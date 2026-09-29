@@ -1,1042 +1,1716 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>I Have No Idea What I'm Doing</title>
-
-<meta
-name="description"
-content="A surprisingly useful decision generator for people who don't know what to do."
->
-
-<style>
-
-:root {
-  --bg: #09090d;
-  --surface: #111118;
-  --surface-2: #17171f;
-  --text: #f5f3ef;
-  --muted: #92919b;
-  --purple: #9b7cff;
-  --blue: #62a9ff;
-  --green: #65d69b;
-  --pink: #ff79b8;
-  --yellow: #ffd166;
-  --border: rgba(255,255,255,.09);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  min-height: 100vh;
-  background:
-    radial-gradient(
-      circle at 50% -15%,
-      rgba(125, 90, 255, .18),
-      transparent 38%
-    ),
-    var(--bg);
-  color: var(--text);
-  font-family:
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-  line-height: 1.6;
-}
-
-.container {
-  width: min(1080px, calc(100% - 32px));
-  margin: auto;
-}
-
-/* NAV */
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 0;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.logo {
-  color: var(--text);
-  font-weight: 700;
-  letter-spacing: -.03em;
-}
-
-.status {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.status-dot {
-  width: 7px;
-  height: 7px;
-  background: var(--green);
-  border-radius: 50%;
-  box-shadow: 0 0 12px var(--green);
-}
-
-/* HERO */
-
-.hero {
-  text-align: center;
-  padding: 90px 0 75px;
-}
-
-.eyebrow {
-  display: inline-block;
-  padding: 7px 13px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,.03);
-  border-radius: 999px;
-  color: var(--muted);
-  font-size: 12px;
-  margin-bottom: 27px;
-}
-
-h1 {
-  font-size: clamp(50px, 9vw, 105px);
-  line-height: .94;
-  letter-spacing: -.075em;
-  margin-bottom: 30px;
-}
-
-.gradient {
-  background: linear-gradient(
-    110deg,
-    #fff,
-    #c0b1ff,
-    #896cff
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.hero-intro {
-  max-width: 600px;
-  margin: auto;
-  color: var(--muted);
-  font-size: 17px;
-}
-
-/* DECISION BOX */
-
-.decision-section {
-  width: min(760px, 100%);
-  margin: 30px auto 0;
-}
-
-.decision-card {
-  background: rgba(255,255,255,.035);
-  border: 1px solid var(--border);
-  border-radius: 25px;
-  padding: 30px;
-  text-align: left;
-}
-
-.decision-card h2 {
-  font-size: 22px;
-  letter-spacing: -.03em;
-}
-
-.decision-card .subtitle {
-  color: var(--muted);
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-/* CATEGORY BUTTONS */
-
-.categories {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 9px;
-  margin-top: 25px;
-}
-
-.category {
-  background: var(--surface);
-  color: var(--muted);
-  border: 1px solid var(--border);
-  border-radius: 13px;
-  padding: 13px 8px;
-  cursor: pointer;
-  transition: .2s;
-  font-size: 12px;
-}
-
-.category:hover,
-.category.selected {
-  color: var(--text);
-  background: var(--surface-2);
-  border-color: rgba(155,124,255,.55);
-  transform: translateY(-2px);
-}
-
-.category-icon {
-  display: block;
-  font-size: 20px;
-  margin-bottom: 4px;
-}
-
-/* GENERATE */
-
-.generate {
-  width: 100%;
-  margin-top: 15px;
-  border: none;
-  background: linear-gradient(
-    110deg,
-    #8d70ff,
-    #a587ff
-  );
-  color: white;
-  padding: 17px;
-  border-radius: 14px;
-  font-weight: 700;
-  font-size: 15px;
-  cursor: pointer;
-  transition: .2s;
-  box-shadow: 0 12px 35px rgba(130,100,255,.18);
-}
-
-.generate:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 40px rgba(130,100,255,.28);
-}
-
-/* RESULT */
-
-.result {
-  display: none;
-  margin-top: 18px;
-  padding: 28px;
-  background: #15151d;
-  border: 1px solid rgba(155,124,255,.2);
-  border-radius: 20px;
-  animation: appear .35s ease;
-}
-
-.result.visible {
-  display: block;
-}
-
-.result-label {
-  color: var(--purple);
-  text-transform: uppercase;
-  letter-spacing: .13em;
-  font-size: 11px;
-  font-weight: 700;
-}
-
-.result h3 {
-  font-size: clamp(25px, 5vw, 38px);
-  line-height: 1.12;
-  letter-spacing: -.045em;
-  margin-top: 10px;
-}
-
-.why {
-  color: var(--muted);
-  margin-top: 16px;
-  font-size: 15px;
-}
-
-.stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.stat {
-  background: rgba(255,255,255,.05);
-  border: 1px solid var(--border);
-  padding: 7px 10px;
-  border-radius: 999px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.result-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 24px;
-}
-
-.action {
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text);
-  padding: 12px 17px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: .2s;
-}
-
-.action:hover {
-  background: rgba(255,255,255,.07);
-}
-
-.action.primary {
-  background: var(--text);
-  color: #09090d;
-}
-
-/* INDECISION MESSAGE */
-
-.indecision {
-  display: none;
-  margin-top: 14px;
-  color: var(--yellow);
-  font-size: 13px;
-  text-align: center;
-}
-
-.indecision.visible {
-  display: block;
-}
-
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* PHILOSOPHY */
-
-.philosophy {
-  max-width: 720px;
-  margin: 100px auto;
-  text-align: center;
-}
-
-.philosophy .label {
-  color: var(--purple);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: .14em;
-  font-weight: 700;
-}
-
-.philosophy h2 {
-  font-size: clamp(35px, 6vw, 60px);
-  line-height: 1;
-  letter-spacing: -.06em;
-  margin-top: 13px;
-}
-
-.philosophy p {
-  color: var(--muted);
-  margin-top: 20px;
-}
-
-/* FOOTER */
-
-footer {
-  border-top: 1px solid var(--border);
-  padding: 27px 0;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-}
-
-/* MOBILE */
-
-@media(max-width:700px) {
-
-  nav {
-    padding: 18px 0;
-  }
-
-  .status {
-    display: none;
-  }
-
-  .hero {
-    padding: 65px 0 45px;
-  }
-
-  .categories {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .category:last-child {
-    grid-column: span 2;
-  }
-
-  .decision-card {
-    padding: 20px;
-  }
-
-  .result-actions {
-    flex-direction: column;
-  }
-
-  .action {
-    width: 100%;
-  }
-
-  .footer-inner {
-    flex-direction: column;
-    gap: 8px;
-  }
-}
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>I Have No Idea What I'm Doing</title>
+
+  <meta
+    name="description"
+    content="A website made because someone was curious whether an AI could make a website from nothing."
+  />
+
+  <style>
+    :root {
+      --bg: #0b0b0f;
+      --card: #14141a;
+      --card-hover: #1a1a22;
+      --text: #f5f3ef;
+      --muted: #9b99a3;
+      --purple: #9b7cff;
+      --blue: #61a8ff;
+      --green: #65d69b;
+      --pink: #ff79b8;
+      --border: rgba(255,255,255,0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(126, 92, 255, 0.18), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background 0.5s ease;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .logo {
+      color: var(--text);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--green);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 78vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 70px 0 100px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 13px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      max-width: 900px;
+      font-size: clamp(52px, 9vw, 108px);
+      line-height: 0.94;
+      letter-spacing: -0.075em;
+      font-weight: 800;
+      margin-bottom: 32px;
+    }
+
+    .gradient {
+      background: linear-gradient(
+        110deg,
+        #ffffff 20%,
+        #bdaeff 55%,
+        #8e73ff 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 590px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .hero p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* =========================
+       MAIN BUTTONS
+    ========================= */
+
+    .buttons {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      width: min(720px, 100%);
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      padding: 22px 24px;
+      border-radius: 18px;
+      font-size: 15px;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      background: var(--card-hover);
+      border-color: rgba(255,255,255,0.18);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .button-icon {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 13px;
+    }
+
+    .button-label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .button-description {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+    .decision:hover {
+      border-color: rgba(155,124,255,0.5);
+    }
+
+    .interesting:hover {
+      border-color: rgba(97,168,255,0.5);
+    }
+
+    .changed:hover {
+      border-color: rgba(255,121,184,0.5);
+    }
+
+    .dontknow:hover {
+      border-color: rgba(101,214,155,0.5);
+    }
+
+    /* =========================
+       RESPONSE AREA
+    ========================= */
+
+    .response-wrapper {
+      min-height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 28px;
+      width: 100%;
+    }
+
+    .response {
+      display: none;
+      width: min(720px, 100%);
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      animation: appear 0.35s ease;
+      text-align: left;
+    }
+
+    .response.visible {
+      display: block;
+    }
+
+    .response-label {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+    }
+
+    .response-text {
+      font-size: 22px;
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+    }
+
+    .response-source {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 14px;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================
+       VERSION 2:
+       DECISION GENERATOR
+    ========================= */
+
+    .decision-picker {
+      display: none;
+      width: min(720px, 100%);
+      margin-top: 20px;
+      padding: 28px;
+      border-radius: 22px;
+      background: rgba(155,124,255,0.06);
+      border: 1px solid rgba(155,124,255,0.18);
+      animation: appear 0.35s ease;
+    }
+
+    .decision-picker.visible {
+      display: block;
+    }
+
+    .decision-picker-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 7px;
+    }
+
+    .decision-picker-subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .decision-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .decision-option {
+      padding: 17px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .decision-option:hover {
+      border-color: rgba(155,124,255,0.45);
+      background: rgba(155,124,255,0.08);
+    }
+
+    .decision-option-icon {
+      font-size: 21px;
+      margin-bottom: 7px;
+      display: block;
+    }
+
+    .decision-option-title {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .decision-option-description {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .decision-result {
+      display: none;
+      margin-top: 20px;
+      padding: 27px;
+      border-radius: 20px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(155,124,255,0.12),
+          rgba(255,255,255,0.025)
+        );
+      border: 1px solid rgba(155,124,255,0.2);
+      animation: appear 0.35s ease;
+    }
+
+    .decision-result.visible {
+      display: block;
+    }
+
+    .decision-result-category {
+      color: var(--purple);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .decision-result h3 {
+      font-size: 26px;
+      line-height: 1.2;
+      letter-spacing: -0.04em;
+      margin-bottom: 13px;
+    }
+
+    .decision-result p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    .decision-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .decision-meta span {
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .decision-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .decision-actions button {
+      padding: 12px 17px;
+      border-radius: 12px;
+      font-size: 13px;
+    }
+
+    .do-it-button {
+      background: var(--purple);
+      color: #fff;
+      border-color: var(--purple);
+    }
+
+    .do-it-button:hover {
+      background: #a68cff;
+    }
+
+    .another-button {
+      background: rgba(255,255,255,0.04);
+    }
+
+    .indecision-counter {
+      display: none;
+      margin-top: 15px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .indecision-counter.visible {
+      display: block;
+    }
+
+    /* =========================
+       POSSIBILITIES
+    ========================= */
+
+    .possibilities {
+      padding: 100px 0 130px;
+    }
+
+    .section-heading {
+      max-width: 650px;
+      margin-bottom: 45px;
+    }
+
+    .section-heading span {
+      color: var(--purple);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      font-weight: 700;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(38px, 6vw, 65px);
+      letter-spacing: -0.06em;
+      line-height: 1;
+      margin-top: 12px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-top: 18px;
+      font-size: 16px;
+    }
+
+    .possibility-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .possibility {
+      min-height: 180px;
+      padding: 25px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.025);
+      transition: transform 0.2s ease;
+    }
+
+    .possibility:hover {
+      transform: translateY(-4px);
+    }
+
+    .possibility-number {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .possibility h3 {
+      margin-top: 30px;
+      font-size: 19px;
+      letter-spacing: -0.02em;
+    }
+
+    .possibility p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    /* =========================
+       CHAOS MODE
+    ========================= */
+
+    body.chaos {
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,50,150,0.16), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(70,150,255,0.16), transparent 30%),
+        #090909;
+    }
+
+    body.chaos h1 {
+      animation: wobble 0.5s ease;
+    }
+
+    @keyframes wobble {
+      0% { transform: rotate(0); }
+      25% { transform: rotate(-1deg); }
+      50% { transform: rotate(1deg); }
+      75% { transform: rotate(-0.5deg); }
+      100% { transform: rotate(0); }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 700px) {
+
+      .container {
+        width: min(100% - 28px, 1100px);
+      }
+
+      nav {
+        padding: 20px 0;
+        gap: 15px;
+      }
+
+      .status {
+        font-size: 11px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 70px 0 80px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .buttons {
+        grid-template-columns: 1fr;
+      }
+
+      .decision-options {
+        grid-template-columns: 1fr;
+      }
+
+      .decision-actions {
+        flex-direction: column;
+      }
+
+      .decision-actions button {
+        width: 100%;
+      }
+
+      .possibilities {
+        padding: 70px 0 90px;
+      }
+
+      .possibility-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
-<div class="container">
+  <div class="container">
 
-<nav>
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
 
-  <div class="logo">
-    I Have No Idea What I'm Doing.
-  </div>
+    <nav>
 
-  <div class="status">
-    <span class="status-dot"></span>
-    <span>Currently figuring it out</span>
-  </div>
-
-</nav>
-
-
-<main>
-
-<section class="hero">
-
-  <div class="eyebrow">
-    Decision-making, unnecessarily optimized
-  </div>
-
-  <h1>
-    I Have <span class="gradient">No Idea</span><br>
-    What I'm Doing.
-  </h1>
-
-  <p class="hero-intro">
-    You don't need another productivity system.
-    You probably just need someone to make the decision for you.
-  </p>
-
-
-  <div class="decision-section">
-
-    <div class="decision-card">
-
-      <h2>
-        What kind of decision are we making?
-      </h2>
-
-      <p class="subtitle">
-        Choose your level of unnecessary life management.
-      </p>
-
-
-      <div class="categories">
-
-        <button class="category selected" onclick="selectCategory('tiny', this)">
-          <span class="category-icon">⚡</span>
-          Tiny
-        </button>
-
-        <button class="category" onclick="selectCategory('today', this)">
-          <span class="category-icon">☀️</span>
-          Today
-        </button>
-
-        <button class="category" onclick="selectCategory('personal', this)">
-          <span class="category-icon">🌱</span>
-          Personal
-        </button>
-
-        <button class="category" onclick="selectCategory('creative', this)">
-          <span class="category-icon">🎨</span>
-          Creative
-        </button>
-
-        <button class="category" onclick="selectCategory('unnecessary', this)">
-          <span class="category-icon">🌀</span>
-          Unnecessary
-        </button>
-
+      <div class="logo">
+        I Have No Idea What I'm Doing.
       </div>
 
-
-      <button class="generate" onclick="generateDecision()">
-        Make the decision for me →
-      </button>
-
-
-      <div class="indecision" id="indecision">
-        You have rejected several perfectly reasonable decisions.
-        Interesting.
+      <div class="status">
+        <span class="status-dot"></span>
+        <span>Currently figuring it out</span>
       </div>
 
+    </nav>
 
-      <div class="result" id="result">
 
-        <div class="result-label">
-          Your decision
+    <main>
+
+      <!-- =========================
+           ORIGINAL VERSION 1 HERO
+      ========================= -->
+
+      <section class="hero">
+
+        <div class="eyebrow">
+          A website with absolutely no clear purpose
         </div>
 
-        <h3 id="decisionText"></h3>
+        <h1>
+          I Have <span class="gradient">No Idea</span><br />
+          What I'm Doing.
+        </h1>
 
-        <p class="why" id="decisionWhy"></p>
+        <p>
+          I don't know what this website is for.
+          <br /><br />
 
-        <div class="stats">
+          I made it because I was curious whether an AI could
+          make a website from nothing.
+          <br /><br />
 
-          <span class="stat" id="time"></span>
-          <span class="stat" id="difficulty"></span>
-          <span class="stat" id="regret"></span>
+          <strong>Apparently, it can.</strong>
+          <br />
 
-        </div>
+          I still don't know what the website should be about.
+        </p>
 
-        <div class="result-actions">
 
-          <button
-            class="action primary"
-            onclick="acceptDecision()">
-            I'll do it
+        <!-- =========================
+             ORIGINAL FOUR BUTTONS
+        ========================= -->
+
+        <div class="buttons">
+
+          <button class="decision" onclick="openDecisionGenerator()">
+
+            <span class="button-icon">🟣</span>
+
+            <span class="button-label">
+              Give me an unnecessary life decision
+            </span>
+
+            <span class="button-description">
+              Because apparently you need one.
+            </span>
+
           </button>
 
-          <button
-            class="action"
-            onclick="generateDecision()">
-            Give me another
+
+          <button class="interesting" onclick="showInteresting()">
+
+            <span class="button-icon">🔵</span>
+
+            <span class="button-label">
+              Show me something interesting
+            </span>
+
+            <span class="button-description">
+              Take me somewhere mildly fascinating.
+            </span>
+
+          </button>
+
+
+          <button class="changed" onclick="changeMind()">
+
+            <span class="button-icon">🟢</span>
+
+            <span class="button-label">
+              I changed my mind
+            </span>
+
+            <span class="button-description">
+              This happens approximately 47 times per day.
+            </span>
+
+          </button>
+
+
+          <button class="dontknow" onclick="dontKnow()">
+
+            <span class="button-icon">⚪</span>
+
+            <span class="button-label">
+              I don't know
+            </span>
+
+            <span class="button-description">
+              Finally, a button that understands me.
+            </span>
+
           </button>
 
         </div>
 
+
+        <!-- =========================
+             VERSION 2 DECISION PICKER
+        ========================= -->
+
+        <div class="decision-picker" id="decisionPicker">
+
+          <div class="decision-picker-title">
+            What kind of decision are we making?
+          </div>
+
+          <div class="decision-picker-subtitle">
+            Choose carefully. Or don't. That's kind of the point.
+          </div>
+
+
+          <div class="decision-options">
+
+            <button
+              class="decision-option"
+              onclick="generateDecision('tiny')"
+            >
+              <span class="decision-option-icon">🧹</span>
+
+              <span class="decision-option-title">
+                Tiny
+              </span>
+
+              <span class="decision-option-description">
+                Something you can decide in 30 seconds.
+              </span>
+            </button>
+
+
+            <button
+              class="decision-option"
+              onclick="generateDecision('today')"
+            >
+              <span class="decision-option-icon">🌱</span>
+
+              <span class="decision-option-title">
+                Today
+              </span>
+
+              <span class="decision-option-description">
+                Something you can actually do today.
+              </span>
+            </button>
+
+
+            <button
+              class="decision-option"
+              onclick="generateDecision('personal')"
+            >
+              <span class="decision-option-icon">🎯</span>
+
+              <span class="decision-option-title">
+                Personal
+              </span>
+
+              <span class="decision-option-description">
+                A small life choice.
+              </span>
+            </button>
+
+
+            <button
+              class="decision-option"
+              onclick="generateDecision('creative')"
+            >
+              <span class="decision-option-icon">🎨</span>
+
+              <span class="decision-option-title">
+                Creative
+              </span>
+
+              <span class="decision-option-description">
+                Something to make, explore, or try.
+              </span>
+            </button>
+
+
+            <button
+              class="decision-option"
+              onclick="generateDecision('unnecessary')"
+            >
+              <span class="decision-option-icon">🌀</span>
+
+              <span class="decision-option-title">
+                Completely unnecessary
+              </span>
+
+              <span class="decision-option-description">
+                Maximum nonsense. Minimal consequences.
+              </span>
+            </button>
+
+          </div>
+
+
+          <!-- Decision result -->
+
+          <div class="decision-result" id="decisionResult">
+
+            <div
+              class="decision-result-category"
+              id="decisionCategory"
+            >
+              Your decision
+            </div>
+
+            <h3 id="decisionTitle">
+              Decision goes here.
+            </h3>
+
+            <p id="decisionReason">
+              Reason goes here.
+            </p>
+
+            <div class="decision-meta">
+
+              <span id="decisionTime">
+                ⏱ Time
+              </span>
+
+              <span id="decisionDifficulty">
+                🟢 Difficulty
+              </span>
+
+              <span id="decisionRegret">
+                🤷 Regret potential
+              </span>
+
+            </div>
+
+
+            <div class="decision-actions">
+
+              <button
+                class="do-it-button"
+                onclick="acceptDecision()"
+              >
+                I'll do it
+              </button>
+
+              <button
+                class="another-button"
+                onclick="anotherDecision()"
+              >
+                Give me another
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div
+            class="indecision-counter"
+            id="indecisionCounter"
+          ></div>
+
+        </div>
+
+
+        <!-- =========================
+             ORIGINAL RESPONSE BOX
+        ========================= -->
+
+        <div class="response-wrapper">
+
+          <div class="response" id="response">
+
+            <div
+              class="response-label"
+              id="responseLabel"
+            >
+              Important information
+            </div>
+
+            <div
+              class="response-text"
+              id="responseText"
+            ></div>
+
+            <div
+              class="response-source"
+              id="responseSource"
+            ></div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           ORIGINAL POSSIBILITIES
+      ========================= -->
+
+      <section class="possibilities">
+
+        <div class="section-heading">
+
+          <span>
+            Possible future directions
+          </span>
+
+          <h2>
+            We could do literally anything with this.
+          </h2>
+
+          <p>
+            This is the part where we're supposed to have a business plan.
+            We don't.
+          </p>
+
+        </div>
+
+
+        <div class="possibility-grid">
+
+          <div class="possibility">
+
+            <div class="possibility-number">
+              01
+            </div>
+
+            <h3>
+              Turn it into a game
+            </h3>
+
+            <p>
+              Tiny decisions. Strange challenges. Completely unnecessary achievements.
+            </p>
+
+          </div>
+
+
+          <div class="possibility">
+
+            <div class="possibility-number">
+              02
+            </div>
+
+            <h3>
+              Make it useful
+            </h3>
+
+            <p>
+              A productivity tool, decision maker, idea generator, or something people actually need.
+            </p>
+
+          </div>
+
+
+          <div class="possibility">
+
+            <div class="possibility-number">
+              03
+            </div>
+
+            <h3>
+              Make it ridiculous
+            </h3>
+
+            <p>
+              Add anonymous confessions, random buttons, internet nonsense, and questionable features.
+            </p>
+
+          </div>
+
+
+          <div class="possibility">
+
+            <div class="possibility-number">
+              04
+            </div>
+
+            <h3>
+              Turn it into a business
+            </h3>
+
+            <p>
+              At some point someone will probably say “you could monetize this.”
+            </p>
+
+          </div>
+
+
+          <div class="possibility">
+
+            <div class="possibility-number">
+              05
+            </div>
+
+            <h3>
+              Completely change it
+            </h3>
+
+            <p>
+              We could delete everything and build something completely different.
+            </p>
+
+          </div>
+
+
+          <div class="possibility">
+
+            <div class="possibility-number">
+              06
+            </div>
+
+            <h3>
+              Do absolutely nothing
+            </h3>
+
+            <p>
+              Honestly, this is still a legitimate option.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- =========================
+         ORIGINAL FOOTER
+    ========================= -->
+
+    <footer>
+
+      <div class="footer-inner">
+
+        <div>
+          Built out of curiosity.
+        </div>
+
+        <div>
+          Version 2.0 · Purpose still pending.
+        </div>
+
       </div>
 
-    </div>
+    </footer>
 
   </div>
 
-</section>
+
+  <script>
+
+    /* =========================================
+       ORIGINAL VERSION 1 RESPONSE SYSTEM
+    ========================================= */
+
+    const response = document.getElementById("response");
+    const responseLabel = document.getElementById("responseLabel");
+    const responseText = document.getElementById("responseText");
+    const responseSource = document.getElementById("responseSource");
 
 
-<section class="philosophy">
+    function showResponse(label, text, source = "") {
 
-  <div class="label">
-    A surprisingly important philosophy
-  </div>
+      responseLabel.textContent = label;
+      responseText.textContent = text;
+      responseSource.textContent = source;
 
-  <h2>
-    You don't need to know everything.
-  </h2>
+      response.classList.remove("visible");
 
-  <p>
-    Sometimes you just need to make one small decision
-    and see what happens next.
-  </p>
+      void response.offsetWidth;
 
-</section>
+      response.classList.add("visible");
 
-</main>
-
-
-<footer>
-
-  <div class="footer-inner">
-
-    <div>
-      Built out of curiosity.
-    </div>
-
-    <div>
-      Version 2.0 · Decision-making department
-    </div>
-
-  </div>
-
-</footer>
-
-</div>
-
-
-<script>
-
-/* =========================
-   DECISION DATABASE
-========================= */
-
-const decisions = {
-
-  tiny: [
-
-    {
-      text: "Put your phone down for the next 10 minutes.",
-      why: "Your attention deserves at least a brief vacation from being rented out.",
-      time: "10 minutes",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 1/10"
-    },
-
-    {
-      text: "Drink a glass of water before doing anything else.",
-      why: "It costs almost nothing and somehow humans regularly forget to do it.",
-      time: "2 minutes",
-      difficulty: "🟢 Very easy",
-      regret: "Regret: 0/10"
-    },
-
-    {
-      text: "Delete 10 screenshots you no longer need.",
-      why: "You probably have screenshots of things you cannot even remember taking screenshots of.",
-      time: "5 minutes",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 1/10"
-    },
-
-    {
-      text: "Change where you normally sit.",
-      why: "A tiny environmental change can make an ordinary moment feel surprisingly different.",
-      time: "1 minute",
-      difficulty: "🟢 Very easy",
-      regret: "Regret: 0/10"
-    },
-
-    {
-      text: "Put on a song you haven't heard in years.",
-      why: "Your brain has an impressive ability to store entire emotional time machines.",
-      time: "4 minutes",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 0/10"
-    },
-
-    {
-      text: "Send someone a message saying you appreciate them.",
-      why: "Small acts of connection tend to be more valuable than we predict.",
-      time: "2 minutes",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 0/10"
+      response.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
     }
 
-  ],
+
+    /* =========================================
+       ORIGINAL VERSION 1 RANDOM CONTENT
+    ========================================= */
+
+    const interesting = [
+
+      "Octopuses have three hearts. Two stop beating when they swim.",
+
+      "A day on Venus is longer than a year on Venus.",
+
+      "Bananas are botanically berries. Strawberries technically aren't.",
+
+      "The inventor of the Pringles can had some of his ashes buried in one.",
+
+      "There are more possible iterations of a game of chess than there are atoms in the observable universe.",
+
+      "Cows have best friends and can become stressed when separated.",
+
+      "The smell after rain has a name: petrichor.",
+
+      "A group of flamingos is called a flamboyance.",
+
+      "Your brain is constantly predicting what it expects to see before processing what is actually there.",
+
+      "Some turtles can breathe through their butts. Nature is deeply unserious."
+
+    ];
 
 
-  today: [
+    function randomItem(array) {
 
-    {
-      text: "Go somewhere you've never been within 30 minutes of where you live.",
-      why: "You don't need a major adventure. You may simply need to interrupt your normal pattern.",
-      time: "~1 hour",
-      difficulty: "🟡 Moderate",
-      regret: "Regret: 2/10"
-    },
+      return array[
+        Math.floor(Math.random() * array.length)
+      ];
 
-    {
-      text: "Spend one hour doing something with absolutely no productivity objective.",
-      why: "Not everything needs to become useful.",
-      time: "1 hour",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 1/10"
-    },
-
-    {
-      text: "Try a food you've never ordered before.",
-      why: "Low-risk novelty is one of the easiest ways to make an ordinary day less ordinary.",
-      time: "30–60 min",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 3/10"
-    },
-
-    {
-      text: "Take a walk without listening to anything.",
-      why: "Your brain rarely gets uninterrupted silence anymore.",
-      time: "20–30 min",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 1/10"
-    },
-
-    {
-      text: "Finish one tiny task you've been postponing.",
-      why: "Not because it matters enormously. Because removing one small piece of mental clutter feels good.",
-      time: "10–30 min",
-      difficulty: "🟡 Moderate",
-      regret: "Regret: 0/10"
-    },
-
-    {
-      text: "Watch something you've never heard anyone recommend.",
-      why: "Algorithms are useful, but occasionally choosing badly on purpose is fun.",
-      time: "30–120 min",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 5/10"
     }
 
-  ],
 
+    function showInteresting() {
 
-  personal: [
+      document.body.classList.remove("chaos");
 
-    {
-      text: "Choose one thing you've been postponing and give it exactly 20 minutes.",
-      why: "You don't need to finish it. You just need to make the problem smaller.",
-      time: "20 min",
-      difficulty: "🟡 Moderate",
-      regret: "Regret: 1/10"
-    },
+      showResponse(
 
-    {
-      text: "Write down three things you are curious about.",
-      why: "Curiosity is often a better starting point than trying to discover your grand purpose.",
-      time: "5 minutes",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 0/10"
-    },
+        "Something interesting",
 
-    {
-      text: "Say no to one thing you don't actually want to do.",
-      why: "Sometimes indecision is really difficulty giving yourself permission.",
-      time: "Variable",
-      difficulty: "🟠 Brave",
-      regret: "Regret: 4/10"
-    },
+        randomItem(interesting),
 
-    {
-      text: "Pick one small thing you'd like to become better at and spend 15 minutes on it.",
-      why: "You don't need a five-year plan to start learning something.",
-      time: "15 min",
-      difficulty: "🟡 Moderate",
-      regret: "Regret: 1/10"
-    },
+        "You are now approximately 0.0001% more informed."
 
-    {
-      text: "Write down one decision you keep avoiding. Don't solve it. Just write it down.",
-      why: "Making the problem visible is sometimes the first useful move.",
-      time: "5 minutes",
-      difficulty: "🟡 Moderate",
-      regret: "Regret: 1/10"
+      );
+
     }
 
-  ],
 
+    /* =========================================
+       ORIGINAL VERSION 1:
+       I CHANGED MY MIND
+    ========================================= */
 
-  creative: [
+    function changeMind() {
 
-    {
-      text: "Make something deliberately terrible in 20 minutes.",
-      why: "Removing the requirement to be good is surprisingly effective at getting you started.",
-      time: "20 min",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 0/10"
-    },
+      document.body.classList.toggle("chaos");
 
-    {
-      text: "Take 10 photos of ordinary objects and pretend you're creating an art exhibition.",
-      why: "Creative thinking gets easier when you change the frame rather than the subject.",
-      time: "20 min",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 0/10"
-    },
+      showResponse(
 
-    {
-      text: "Write a one-page story about the last object you touched.",
-      why: "Constraints are often surprisingly good at producing ideas.",
-      time: "15 min",
-      difficulty: "🟡 Moderate",
-      regret: "Regret: 0/10"
-    },
+        "Excellent.",
 
-    {
-      text: "Design a completely useless product and give it a premium brand.",
-      why: "There is no pressure when the product is intentionally pointless.",
-      time: "30 min",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 0/10"
-    },
+        "We have completely changed direction. Unfortunately, we have not decided what the new direction is.",
 
-    {
-      text: "Create something using only three colors.",
-      why: "Restrictions force your brain to solve a smaller, more interesting problem.",
-      time: "20–60 min",
-      difficulty: "🟡 Moderate",
-      regret: "Regret: 1/10"
+        "This is progress."
+
+      );
+
     }
 
-  ],
 
+    /* =========================================
+       ORIGINAL VERSION 1:
+       I DON'T KNOW
+    ========================================= */
 
-  unnecessary: [
+    function dontKnow() {
 
-    {
-      text: "Buy a plant. You don't need one. That's precisely why.",
-      why: "This decision has no business being this satisfying.",
-      time: "30–60 min",
-      difficulty: "🟡 Moderate",
-      regret: "Regret: 3/10"
-    },
+      document.body.classList.remove("chaos");
 
-    {
-      text: "Give yourself a completely unnecessary nickname for the rest of today.",
-      why: "There is no practical reason to do this.",
-      time: "All day",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 2/10"
-    },
+      showResponse(
 
-    {
-      text: "Walk around your home and decide which object would survive the longest in a zombie apocalypse.",
-      why: "Important questions deserve serious investigation.",
-      time: "10 minutes",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 0/10"
-    },
+        "A completely valid answer",
 
-    {
-      text: "Create a ranking of the five best objects currently within your reach.",
-      why: "Someone has to establish the hierarchy.",
-      time: "5 minutes",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 0/10"
-    },
+        "That's okay. You don't need to know yet.",
 
-    {
-      text: "Make yourself a snack and give it a restaurant-style description.",
-      why: "“Toast with cheese” becomes much more interesting when described as artisanal.",
-      time: "10 min",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 0/10"
-    },
+        "Neither does this website."
 
-    {
-      text: "Choose an ordinary object and decide what its secret life is when you're not looking.",
-      why: "Reality is already weird. You might as well participate.",
-      time: "5 minutes",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 0/10"
-    },
+      );
 
-    {
-      text: "Spend five minutes seriously considering whether you could become extremely good at juggling.",
-      why: "You probably won't. But now you're thinking about juggling.",
-      time: "5 minutes",
-      difficulty: "🟢 Easy",
-      regret: "Regret: 0/10"
     }
 
-  ]
 
-};
+    /* =========================================
+       VERSION 2:
+       DECISION GENERATOR
+    ========================================= */
 
+    const decisionPicker =
+      document.getElementById("decisionPicker");
 
-/* =========================
-   STATE
-========================= */
+    const decisionResult =
+      document.getElementById("decisionResult");
 
-let currentCategory = "tiny";
-let rejected = 0;
+    const decisionCategory =
+      document.getElementById("decisionCategory");
+
+    const decisionTitle =
+      document.getElementById("decisionTitle");
+
+    const decisionReason =
+      document.getElementById("decisionReason");
+
+    const decisionTime =
+      document.getElementById("decisionTime");
+
+    const decisionDifficulty =
+      document.getElementById("decisionDifficulty");
+
+    const decisionRegret =
+      document.getElementById("decisionRegret");
+
+    const indecisionCounter =
+      document.getElementById("indecisionCounter");
+
+
+    let currentCategory = null;
+
+    let rejectionCount = 0;
+
+
+    /* =========================================
+       DECISION DATABASE
+    ========================================= */
+
+    const decisions = {
+
+      tiny: [
+
+        {
+          title: "Delete one screenshot from your phone.",
+          reason: "You almost certainly have one that has served its purpose.",
+          time: "30 seconds",
+          difficulty: "🟢 Very easy",
+          regret: "1/10"
+        },
+
+        {
+          title: "Change where you sit for the next hour.",
+          reason: "A tiny environmental change can make an ordinary afternoon feel slightly different.",
+          time: "1 minute",
+          difficulty: "🟢 Very easy",
+          regret: "1/10"
+        },
+
+        {
+          title: "Drink a glass of water before doing anything else.",
+          reason: "Not every decision needs to be profound.",
+          time: "1 minute",
+          difficulty: "🟢 Very easy",
+          regret: "0/10"
+        },
+
+        {
+          title: "Put your phone somewhere you cannot see it for 15 minutes.",
+          reason: "You don't have to become a monk. Just disappear from your phone briefly.",
+          time: "15 minutes",
+          difficulty: "🟡 Mild",
+          regret: "2/10"
+        },
+
+        {
+          title: "Listen to the next song that comes up instead of choosing one.",
+          reason: "Give randomness a tiny amount of authority.",
+          time: "4 minutes",
+          difficulty: "🟢 Easy",
+          regret: "2/10"
+        }
+
+      ],
+
+
+      today: [
+
+        {
+          title: "Go somewhere you've never been within 30 minutes of your home.",
+          reason: "You don't need a life-changing adventure. You might just need to interrupt your normal pattern.",
+          time: "~1 hour",
+          difficulty: "🟡 Moderate",
+          regret: "4/10"
+        },
+
+        {
+          title: "Take yourself out for a coffee without bringing your usual entertainment.",
+          reason: "Sit there. Look around. Exist like a person from 2004.",
+          time: "30–60 minutes",
+          difficulty: "🟢 Easy",
+          regret: "2/10"
+        },
+
+        {
+          title: "Cook something you've never made before.",
+          reason: "The stakes are dinner. That's survivable.",
+          time: "30–90 minutes",
+          difficulty: "🟡 Moderate",
+          regret: "4/10"
+        },
+
+        {
+          title: "Take a completely different route somewhere today.",
+          reason: "Your brain has memorized your normal route. Give it something new.",
+          time: "10–30 minutes",
+          difficulty: "🟢 Easy",
+          regret: "2/10"
+        },
+
+        {
+          title: "Spend one hour doing something you normally say you don't have time for.",
+          reason: "You might discover that the problem was never actually time.",
+          time: "1 hour",
+          difficulty: "🟡 Moderate",
+          regret: "3/10"
+        }
+
+      ],
+
+
+      personal: [
+
+        {
+          title: "Say no to one thing you don't actually want to do.",
+          reason: "You don't need a dramatic boundary. Start with one small unnecessary obligation.",
+          time: "5 minutes",
+          difficulty: "🟡 Moderate",
+          regret: "3/10"
+        },
+
+        {
+          title: "Write down one thing you've been postponing and spend 15 minutes on it.",
+          reason: "You don't have to finish it. You just have to make it less theoretical.",
+          time: "15 minutes",
+          difficulty: "🟡 Moderate",
+          regret: "2/10"
+        },
+
+        {
+          title: "Ask someone you like a question you've never asked them.",
+          reason: "People are usually more interesting than our assumptions about them.",
+          time: "10 minutes",
+          difficulty: "🟡 Moderate",
+          regret: "3/10"
+        },
+
+        {
+          title: "Remove one commitment from your calendar that you don't care about.",
+          reason: "Your future self does not need to inherit every decision your past self made.",
+          time: "10 minutes",
+          difficulty: "🟡 Moderate",
+          regret: "3/10"
+        },
+
+        {
+          title: "Write down three things you might genuinely want to try someday.",
+          reason: "You don't need a five-year plan. Three possibilities are enough.",
+          time: "10 minutes",
+          difficulty: "🟢 Easy",
+          regret: "1/10"
+        }
+
+      ],
+
+
+      creative: [
+
+        {
+          title: "Make something deliberately terrible.",
+          reason: "Perfectionism loses some of its power when the goal is to make something bad on purpose.",
+          time: "20 minutes",
+          difficulty: "🟢 Easy",
+          regret: "1/10"
+        },
+
+        {
+          title: "Take 10 photographs of completely ordinary things.",
+          reason: "Try to make something boring look interesting.",
+          time: "20–30 minutes",
+          difficulty: "🟢 Easy",
+          regret: "1/10"
+        },
+
+        {
+          title: "Write a 200-word story about a person who finds something they weren't looking for.",
+          reason: "No audience. No publishing. Just make the thing.",
+          time: "20 minutes",
+          difficulty: "🟡 Moderate",
+          regret: "0/10"
+        },
+
+        {
+          title: "Redesign something you use every day on paper.",
+          reason: "You don't have to build it. Just imagine how you'd improve it.",
+          time: "20 minutes",
+          difficulty: "🟢 Easy",
+          regret: "1/10"
+        },
+
+        {
+          title: "Make a playlist with exactly five songs.",
+          reason: "Constraints make surprisingly good creative tools.",
+          time: "15 minutes",
+          difficulty: "🟢 Easy",
+          regret: "1/10"
+        }
+
+      ],
+
+
+      unnecessary: [
+
+        {
+          title: "Buy a plant.",
+          reason: "You don't need one. That's precisely why you should consider one.",
+          time: "30–60 minutes",
+          difficulty: "🟡 Moderate",
+          regret: "4/10"
+        },
+
+        {
+          title: "Learn one completely useless fact and tell nobody.",
+          reason: "Knowledge does not always need to be monetized.",
+          time: "5 minutes",
+          difficulty: "🟢 Easy",
+          regret: "0/10"
+        },
 
+        {
+          title: "Give an object in your home a completely unnecessary name.",
+          reason: "That lamp has been anonymous for long enough.",
+          time: "30 seconds",
+          difficulty: "🟢 Very easy",
+          regret: "0/10"
+        },
 
-/* =========================
-   CATEGORY SELECTION
-========================= */
+        {
+          title: "Rearrange one piece of furniture and then decide whether it was better.",
+          reason: "Human civilization has survived worse decisions.",
+          time: "10 minutes",
+          difficulty: "🟡 Moderate",
+          regret: "3/10"
+        },
 
-function selectCategory(category, element) {
+        {
+          title: "Go outside and walk until you see something you've never noticed before.",
+          reason: "There is probably something right outside your normal field of attention.",
+          time: "20–30 minutes",
+          difficulty: "🟢 Easy",
+          regret: "1/10"
+        },
 
-  currentCategory = category;
+        {
+          title: "Start a project you have absolutely no intention of finishing.",
+          reason: "Not everything needs to become a side hustle.",
+          time: "20 minutes",
+          difficulty: "🟢 Easy",
+          regret: "1/10"
+        }
 
-  document
-    .querySelectorAll(".category")
-    .forEach(button => button.classList.remove("selected"));
+      ]
 
-  element.classList.add("selected");
+    };
 
-}
 
+    /* =========================================
+       OPEN GENERATOR
+    ========================================= */
 
-/* =========================
-   RANDOM DECISION
-========================= */
+    function openDecisionGenerator() {
 
-function generateDecision() {
+      document.body.classList.remove("chaos");
 
-  const list = decisions[currentCategory];
+      decisionPicker.classList.toggle("visible");
 
-  const decision =
-    list[Math.floor(Math.random() * list.length)];
+      decisionResult.classList.remove("visible");
 
-  document.getElementById("decisionText").textContent =
-    decision.text;
+      if (decisionPicker.classList.contains("visible")) {
 
-  document.getElementById("decisionWhy").textContent =
-    "Why this one? " + decision.why;
+        decisionPicker.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
 
-  document.getElementById("time").textContent =
-    "⏱ " + decision.time;
+      }
 
-  document.getElementById("difficulty").textContent =
-    decision.difficulty;
+    }
 
-  document.getElementById("regret").textContent =
-    decision.regret;
 
-  const result =
-    document.getElementById("result");
+    /* =========================================
+       GENERATE DECISION
+    ========================================= */
 
-  result.classList.remove("visible");
+    function generateDecision(category) {
 
-  void result.offsetWidth;
+      currentCategory = category;
 
-  result.classList.add("visible");
+      rejectionCount = 0;
 
-  result.scrollIntoView({
-    behavior: "smooth",
-    block: "center"
-  });
+      displayDecision(category);
 
-}
+    }
 
 
-/* =========================
-   REJECT DECISION
-========================= */
+    function displayDecision(category) {
 
-function generateAnother() {
+      const options = decisions[category];
 
-  rejected++;
+      const decision =
+        randomItem(options);
 
-  generateDecision();
 
-  updateIndecision();
+      const categoryNames = {
 
-}
+        tiny: "Tiny decision",
 
+        today: "Something to do today",
 
-/* =========================
-   INDECISION METER
-========================= */
+        personal: "Personal decision",
 
-function updateIndecision() {
+        creative: "Creative decision",
 
-  const message =
-    document.getElementById("indecision");
+        unnecessary: "Completely unnecessary"
 
-  if (rejected >= 3 && rejected < 5) {
+      };
 
-    message.textContent =
-      "You've rejected several perfectly reasonable decisions. Interesting.";
 
-    message.classList.add("visible");
+      decisionCategory.textContent =
+        categoryNames[category];
 
-  }
 
-  else if (rejected >= 5 && rejected < 8) {
+      decisionTitle.textContent =
+        decision.title;
 
-    message.textContent =
-      "You are now spending more time avoiding the decision than making it.";
 
-    message.classList.add("visible");
+      decisionReason.textContent =
+        decision.reason;
 
-  }
 
-  else if (rejected >= 8) {
+      decisionTime.textContent =
+        "⏱ " + decision.time;
 
-    message.textContent =
-      "You have rejected 8 decisions. The website is beginning to suspect the decision isn't the problem.";
 
-    message.classList.add("visible");
+      decisionDifficulty.textContent =
+        decision.difficulty;
 
-  }
 
-}
+      decisionRegret.textContent =
+        "🤷 Regret potential: " + decision.regret;
 
 
-/* =========================
-   ACCEPT DECISION
-========================= */
+      decisionResult.classList.remove("visible");
 
-function acceptDecision() {
+      void decisionResult.offsetWidth;
 
-  const result =
-    document.getElementById("result");
+      decisionResult.classList.add("visible");
 
-  document.getElementById("decisionText").textContent =
-    "Good. Decision made.";
 
-  document.getElementById("decisionWhy").textContent =
-    "You don't need to know whether it was the perfect decision. You just needed to make one.";
+      indecisionCounter.classList.remove("visible");
 
-  document.getElementById("time").textContent =
-    "✓ Decision accepted";
+      decisionResult.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
 
-  document.getElementById("difficulty").textContent =
-    "🧠 Overthinking: cancelled";
+    }
 
-  document.getElementById("regret").textContent =
-    "✨ Momentum: acquired";
 
-}
+    /* =========================================
+       ANOTHER DECISION
+    ========================================= */
 
+    function anotherDecision() {
 
-/* =========================
-   GENERATE BUTTON
-========================= */
+      rejectionCount++;
 
-document
-  .querySelector(".generate")
-  .addEventListener("click", () => {
 
-    rejected = 0;
+      if (rejectionCount >= 7) {
 
-  });
+        decisionCategory.textContent =
+          "The generator has reached a conclusion.";
 
+        decisionTitle.textContent =
+          "Stop looking for the perfect decision.";
 
-/* =========================
-   OVERRIDE "ANOTHER"
-========================= */
+        decisionReason.textContent =
+          "You've rejected seven perfectly reasonable options. At this point, the decision isn't the problem. You are. Respectfully.";
 
-document.addEventListener("click", function(event) {
+        decisionTime.textContent =
+          "⏱ Immediately";
 
-  if (
-    event.target.classList.contains("action") &&
-    event.target.textContent.includes("Give me another")
-  ) {
+        decisionDifficulty.textContent =
+          "🟡 Surprisingly difficult";
 
-    generateAnother();
+        decisionRegret.textContent =
+          "🤷 Probably 0/10";
 
-  }
 
-});
+        indecisionCounter.textContent =
+          "The website believes you may be overthinking this.";
 
-</script>
+        indecisionCounter.classList.add("visible");
+
+
+        decisionResult.classList.remove("visible");
+
+        void decisionResult.offsetWidth;
+
+        decisionResult.classList.add("visible");
+
+        return;
+
+      }
+
+
+      if (rejectionCount >= 4) {
+
+        indecisionCounter.textContent =
+          "You've rejected " +
+          rejectionCount +
+          " decisions. We are beginning to suspect you don't actually want a decision.";
+
+        indecisionCounter.classList.add("visible");
+
+      }
+
+
+      displayDecision(currentCategory);
+
+    }
+
+
+    /* =========================================
+       ACCEPT DECISION
+    ========================================= */
+
+    function acceptDecision() {
+
+      decisionCategory.textContent =
+        "Decision accepted";
+
+      decisionTitle.textContent =
+        "Excellent. Go do the thing.";
+
+      decisionReason.textContent =
+        "You don't need another decision. You need approximately five minutes of action.";
+
+      decisionTime.textContent =
+        "🚀 Start now";
+
+      decisionDifficulty.textContent =
+        "🟢 You can do this";
+
+      decisionRegret.textContent =
+        "🤷 Future you can deal with it";
+
+
+      indecisionCounter.textContent =
+        "The website is proud of you.";
+
+      indecisionCounter.classList.add("visible");
+
+
+      decisionResult.classList.remove("visible");
+
+      void decisionResult.offsetWidth;
+
+      decisionResult.classList.add("visible");
+
+    }
+
+  </script>
 
 </body>
 </html>
