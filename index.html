@@ -1711,6 +1711,356 @@
     }
 
   </script>
+<!-- =========================================
+     VERSION 3: TEACH ME SOMETHING
+     ADDITION ONLY — ORIGINAL SITE PRESERVED
+========================================= -->
 
+<style>
+  .learning-section {
+    width: min(720px, 100%);
+    margin: 0 auto 80px;
+  }
+
+  .learning-main-button {
+    width: 100%;
+    border-color: rgba(255, 184, 77, 0.22);
+  }
+
+  .learning-main-button:hover {
+    border-color: rgba(255, 184, 77, 0.6);
+  }
+
+  .learning-menu {
+    display: none;
+    margin-top: 16px;
+    padding: 28px;
+    border-radius: 22px;
+    background: rgba(255, 184, 77, 0.05);
+    border: 1px solid rgba(255, 184, 77, 0.18);
+    animation: appear 0.35s ease;
+  }
+
+  .learning-menu.visible {
+    display: block;
+  }
+
+  .learning-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 7px;
+  }
+
+  .learning-subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 22px;
+  }
+
+  .course-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .course-option {
+    padding: 20px;
+  }
+
+  .course-option:hover {
+    border-color: rgba(255, 184, 77, 0.5);
+  }
+
+  .course-icon {
+    display: block;
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+
+  .course-name {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  .course-description {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .course-content {
+    display: none;
+    margin-top: 18px;
+    padding: 28px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid var(--border);
+    animation: appear 0.35s ease;
+  }
+
+  .course-content.visible {
+    display: block;
+  }
+
+  .course-tag {
+    color: #ffb84d;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .course-content h3 {
+    font-size: 26px;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    margin-bottom: 12px;
+  }
+
+  .course-content p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+
+  .course-link {
+    display: inline-block;
+    padding: 13px 18px;
+    border-radius: 12px;
+    background: #ffb84d;
+    color: #111;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .course-link:hover {
+    transform: translateY(-2px);
+    background: #ffc76d;
+  }
+
+  .course-note {
+    margin-top: 15px !important;
+    margin-bottom: 0 !important;
+    font-size: 11px !important;
+  }
+
+  @media (max-width: 700px) {
+    .course-options {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+
+<section class="learning-section">
+
+  <button
+    class="learning-main-button"
+    onclick="toggleLearning()"
+  >
+    <span class="button-icon">🎓</span>
+
+    <span class="button-label">
+      Teach me something
+    </span>
+
+    <span class="button-description">
+      This may or may not improve your life.
+    </span>
+  </button>
+
+
+  <div class="learning-menu" id="learningMenu">
+
+    <div class="learning-title">
+      How useful would you like this to be?
+    </div>
+
+    <div class="learning-subtitle">
+      There are no guarantees either way.
+    </div>
+
+
+    <div class="course-options">
+
+      <button
+        class="course-option"
+        onclick="showMeaninglessCourse()"
+      >
+        <span class="course-icon">🌀</span>
+
+        <span class="course-name">
+          Possibly Meaningless Course
+        </span>
+
+        <span class="course-description">
+          Learn something you probably didn't need to know.
+        </span>
+      </button>
+
+
+      <button
+        class="course-option"
+        onclick="showHelpfulCourse()"
+      >
+        <span class="course-icon">🧠</span>
+
+        <span class="course-name">
+          Possibly Helpful Course
+        </span>
+
+        <span class="course-description">
+          Something that might actually be useful.
+        </span>
+      </button>
+
+    </div>
+
+
+    <!-- POSSIBLY MEANINGLESS COURSE -->
+
+    <div
+      class="course-content"
+      id="meaninglessCourse"
+    >
+
+      <div class="course-tag">
+        Possibly Meaningless Course
+      </div>
+
+      <h3>
+        Nothing here yet.
+      </h3>
+
+      <p>
+        We haven't decided what you're supposed to learn.
+        This feels appropriate.
+      </p>
+
+    </div>
+
+
+    <!-- POSSIBLY HELPFUL COURSE -->
+
+    <div
+      class="course-content"
+      id="helpfulCourse"
+    >
+
+      <div class="course-tag">
+        Possibly Helpful Course
+      </div>
+
+      <h3>
+        Chemsex Recovery
+      </h3>
+
+      <p>
+        A self-guided 30-day programme for taking back control.
+        Explore triggers, cravings, weekends, loneliness,
+        sober intimacy, support and recovery planning.
+      </p>
+
+      <a
+        class="course-link"
+        href="chemsex-recovery.pdf"
+        target="_blank"
+        rel="noopener"
+      >
+        Open the 30-Day Programme →
+      </a>
+
+      <p class="course-note">
+        Educational material only. It does not replace medical care,
+        addiction treatment or emergency support.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<script>
+
+  function toggleLearning() {
+
+    const menu =
+      document.getElementById("learningMenu");
+
+    menu.classList.toggle("visible");
+
+    if (menu.classList.contains("visible")) {
+
+      setTimeout(function () {
+
+        menu.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+      }, 100);
+
+    }
+
+  }
+
+
+  function showMeaninglessCourse() {
+
+    const meaningless =
+      document.getElementById("meaninglessCourse");
+
+    const helpful =
+      document.getElementById("helpfulCourse");
+
+    helpful.classList.remove("visible");
+
+    meaningless.classList.add("visible");
+
+    setTimeout(function () {
+
+      meaningless.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+    }, 100);
+
+  }
+
+
+  function showHelpfulCourse() {
+
+    const meaningless =
+      document.getElementById("meaninglessCourse");
+
+    const helpful =
+      document.getElementById("helpfulCourse");
+
+    meaningless.classList.remove("visible");
+
+    helpful.classList.add("visible");
+
+    setTimeout(function () {
+
+      helpful.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+    }, 100);
+
+  }
+
+</script>
 </body>
 </html>
