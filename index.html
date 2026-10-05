@@ -315,7 +315,7 @@ button:active { transform:translateY(0); }
 
 .helpful-course-grid {
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:12px;
   margin-top:20px;
 }
@@ -727,8 +727,6 @@ body.chaos h1 { animation:wobble .5s ease; }
   I still don't know what the website should be about.
 </p>
 
-<!-- ORIGINAL FOUR BUTTONS -->
-
 <div class="buttons">
 
 <button class="decision" onclick="openDecisionGenerator()">
@@ -821,10 +819,12 @@ body.chaos h1 { animation:wobble .5s ease; }
     <h3>Choose a course.</h3>
 
     <p>
-      One in English. One in Armenian. Both are here to be useful.
+      Apparently this website is slowly becoming educational.
     </p>
 
     <div class="helpful-course-grid">
+
+      <!-- ENGLISH -->
 
       <div class="helpful-course-card">
 
@@ -846,10 +846,12 @@ body.chaos h1 { animation:wobble .5s ease; }
           target="_blank"
           rel="noopener"
         >
-          Open the 30-Day Programme →
+          Open →
         </a>
 
       </div>
+
+      <!-- ARMENIAN -->
 
       <div class="helpful-course-card">
 
@@ -874,6 +876,31 @@ body.chaos h1 { animation:wobble .5s ease; }
 
       </div>
 
+      <!-- GERMAN -->
+
+      <div class="helpful-course-card">
+
+        <div class="helpful-course-language">
+          DEUTSCH
+        </div>
+
+        <h4>Chemsex</h4>
+
+        <p>
+          Wissen • Sicherheit • Veränderung
+        </p>
+
+        <a
+          class="course-link"
+          href="Chemsex_German.pdf"
+          target="_blank"
+          rel="noopener"
+        >
+          Öffnen →
+        </a>
+
+      </div>
+
     </div>
 
     <p class="course-note">
@@ -886,7 +913,7 @@ body.chaos h1 { animation:wobble .5s ease; }
 </div>
 </div>
 
-<!-- ORIGINAL VERSION 2 DECISION PICKER -->
+<!-- DECISION PICKER -->
 
 <div class="decision-picker" id="decisionPicker">
 
@@ -976,7 +1003,7 @@ body.chaos h1 { animation:wobble .5s ease; }
 
 </div>
 
-<!-- ORIGINAL RESPONSE -->
+<!-- RESPONSE -->
 
 <div class="response-wrapper">
 
@@ -996,7 +1023,7 @@ body.chaos h1 { animation:wobble .5s ease; }
 
 </section>
 
-<!-- ORIGINAL POSSIBILITIES -->
+<!-- POSSIBILITIES -->
 
 <section class="possibilities">
 
@@ -1069,7 +1096,7 @@ body.chaos h1 { animation:wobble .5s ease; }
 
 <script>
 
-/* ORIGINAL RESPONSE SYSTEM */
+/* RESPONSE SYSTEM */
 
 const response=document.getElementById("response");
 const responseLabel=document.getElementById("responseLabel");
@@ -1091,7 +1118,7 @@ function showResponse(label,text,source="") {
   });
 }
 
-/* ORIGINAL RANDOM CONTENT */
+/* RANDOM CONTENT */
 
 const interesting=[
   "Octopuses have three hearts. Two stop beating when they swim.",
@@ -1120,7 +1147,7 @@ function showInteresting() {
   );
 }
 
-/* ORIGINAL CHANGE MIND */
+/* CHANGE MIND */
 
 function changeMind() {
   document.body.classList.toggle("chaos");
@@ -1132,7 +1159,7 @@ function changeMind() {
   );
 }
 
-/* ORIGINAL DON'T KNOW */
+/* DON'T KNOW */
 
 function dontKnow() {
   document.body.classList.remove("chaos");
@@ -1144,7 +1171,7 @@ function dontKnow() {
   );
 }
 
-/* VERSION 3 LEARNING */
+/* LEARNING */
 
 function toggleLearning() {
   const menu=document.getElementById("learningMenu");
@@ -1191,7 +1218,7 @@ function showHelpfulCourse() {
   },100);
 }
 
-/* ORIGINAL VERSION 2 DECISION GENERATOR */
+/* DECISION GENERATOR */
 
 const decisionPicker=document.getElementById("decisionPicker");
 const decisionResult=document.getElementById("decisionResult");
