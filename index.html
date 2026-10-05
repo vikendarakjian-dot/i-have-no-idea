@@ -311,6 +311,44 @@ button:active { transform:translateY(0); }
   background:#ffc76d;
 }
 
+/* HELPFUL COURSE CHOICES */
+
+.helpful-course-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:20px;
+}
+
+.helpful-course-card {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  padding:22px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:rgba(255,255,255,.025);
+}
+
+.helpful-course-card h4 {
+  color:var(--text);
+  font-size:20px;
+  line-height:1.25;
+  margin-bottom:10px;
+}
+
+.helpful-course-card p {
+  flex-grow:1;
+}
+
+.helpful-course-language {
+  color:var(--orange);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.12em;
+  margin-bottom:9px;
+}
+
 .course-note {
   margin-top:15px !important;
   margin-bottom:0 !important;
@@ -632,7 +670,8 @@ body.chaos h1 { animation:wobble .5s ease; }
 
   .buttons,
   .decision-options,
-  .course-options {
+  .course-options,
+  .helpful-course-grid {
     grid-template-columns:1fr;
   }
 
@@ -655,7 +694,6 @@ body.chaos h1 { animation:wobble .5s ease; }
 
 <nav>
   <div class="logo">I Have No Idea What I'm Doing.</div>
-
   <div class="status">
     <span class="status-dot"></span>
     <span>Currently figuring it out</span>
@@ -719,7 +757,7 @@ body.chaos h1 { animation:wobble .5s ease; }
 
 </div>
 
-<!-- VERSION 3: NOW DIRECTLY BELOW THE FOUR BUTTONS -->
+<!-- TEACH ME SOMETHING -->
 
 <div class="learning-section">
 
@@ -780,22 +818,63 @@ body.chaos h1 { animation:wobble .5s ease; }
       Possibly Helpful Course
     </div>
 
-    <h3>Chemsex Recovery</h3>
+    <h3>Choose a course.</h3>
 
     <p>
-      A self-guided 30-day programme for taking back control.
-      Explore triggers, cravings, weekends, loneliness,
-      sober intimacy, support and recovery planning.
+      One in English. One in Armenian. Both are here to be useful.
     </p>
 
-    <a
-      class="course-link"
-      href="chemsex-recovery.pdf"
-      target="_blank"
-      rel="noopener"
-    >
-      Open the 30-Day Programme →
-    </a>
+    <div class="helpful-course-grid">
+
+      <div class="helpful-course-card">
+
+        <div class="helpful-course-language">
+          ENGLISH
+        </div>
+
+        <h4>Chemsex Recovery</h4>
+
+        <p>
+          A self-guided 30-day programme for taking back control.
+          Explore triggers, cravings, weekends, loneliness,
+          sober intimacy, support and recovery planning.
+        </p>
+
+        <a
+          class="course-link"
+          href="chemsex-recovery.pdf"
+          target="_blank"
+          rel="noopener"
+        >
+          Open the 30-Day Programme →
+        </a>
+
+      </div>
+
+      <div class="helpful-course-card">
+
+        <div class="helpful-course-language">
+          ՀԱՅԵՐԵՆ
+        </div>
+
+        <h4>ՔԵՄՍԵՔՍ</h4>
+
+        <p>
+          Տեղեկատվություն • Անվտանգություն • Վերականգնում
+        </p>
+
+        <a
+          class="course-link"
+          href="Chemsex_Armenian.pdf"
+          target="_blank"
+          rel="noopener"
+        >
+          Բացել →
+        </a>
+
+      </div>
+
+    </div>
 
     <p class="course-note">
       Educational material only. It does not replace medical care,
@@ -975,7 +1054,6 @@ body.chaos h1 { animation:wobble .5s ease; }
 </div>
 
 </section>
-
 </main>
 
 <footer>
