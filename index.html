@@ -20,6 +20,7 @@
   --green:#65d69b;
   --pink:#ff79b8;
   --orange:#ffb84d;
+  --red:#ff6b6b;
   --border:rgba(255,255,255,.09);
 }
 
@@ -132,7 +133,7 @@ h1 {
   font-weight:500;
 }
 
-/* MAIN BUTTONS */
+/* MAIN BUTTON GRID */
 
 .buttons {
   margin-top:48px;
@@ -142,7 +143,8 @@ h1 {
   width:min(720px,100%);
 }
 
-button {
+button,
+.main-link-button {
   appearance:none;
   border:1px solid var(--border);
   background:var(--card);
@@ -160,14 +162,24 @@ button {
     box-shadow .2s ease;
 }
 
-button:hover {
+.main-link-button {
+  text-decoration:none;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+button:hover,
+.main-link-button:hover {
   transform:translateY(-3px);
   background:var(--card-hover);
   border-color:rgba(255,255,255,.18);
   box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
 
-button:active {
+button:active,
+.main-link-button:active {
   transform:translateY(0);
 }
 
@@ -201,28 +213,36 @@ button:active {
 }
 
 .changed:hover {
-  border-color:rgba(255,121,184,.5);
-}
-
-.dontknow:hover {
   border-color:rgba(101,214,155,.5);
 }
 
-/* TEACH ME SOMETHING */
-
-.learning-section {
-  width:min(720px,100%);
-  margin-top:14px;
+.dontknow:hover {
+  border-color:rgba(220,205,255,.5);
 }
 
 .learning-main-button {
   width:100%;
+  height:100%;
   border-color:rgba(255,184,77,.22);
-  text-align:center;
 }
 
 .learning-main-button:hover {
   border-color:rgba(255,184,77,.6);
+}
+
+.armenia-button {
+  border-color:rgba(255,107,107,.22);
+}
+
+.armenia-button:hover {
+  border-color:rgba(255,107,107,.65);
+}
+
+/* LEARNING AREA */
+
+.learning-section {
+  width:min(720px,100%);
+  margin-top:14px;
 }
 
 .learning-menu {
@@ -344,7 +364,7 @@ button:active {
   background:#ffc76d;
 }
 
-/* HELPFUL COURSE CHOICES */
+/* HELPFUL COURSES */
 
 .helpful-course-grid {
   display:grid;
@@ -439,7 +459,6 @@ button:active {
     opacity:0;
     transform:translateY(8px);
   }
-
   to {
     opacity:1;
     transform:translateY(0);
@@ -773,7 +792,6 @@ body.chaos h1 {
 <div class="container">
 
 <nav>
-
   <div class="logo">
     I Have No Idea What I'm Doing.
   </div>
@@ -782,7 +800,6 @@ body.chaos h1 {
     <span class="status-dot"></span>
     <span>Currently figuring it out</span>
   </div>
-
 </nav>
 
 <main>
@@ -812,87 +829,106 @@ body.chaos h1 {
   I still don't know what the website should be about.
 </p>
 
-<!-- MAIN FOUR BUTTONS -->
+<!-- SIX MAIN BUTTONS -->
 
 <div class="buttons">
 
-<button class="decision" onclick="openDecisionGenerator()">
+  <!-- ROW 1 -->
 
-  <span class="button-icon">🟣</span>
+  <button
+    class="decision"
+    onclick="openDecisionGenerator()"
+  >
+    <span class="button-icon">🟣</span>
+    <span class="button-label">
+      Give me an unnecessary life decision
+    </span>
+    <span class="button-description">
+      Because apparently you need one.
+    </span>
+  </button>
 
-  <span class="button-label">
-    Give me an unnecessary life decision
-  </span>
+  <button
+    class="interesting"
+    onclick="showInteresting()"
+  >
+    <span class="button-icon">🔵</span>
+    <span class="button-label">
+      Show me something interesting
+    </span>
+    <span class="button-description">
+      Take me somewhere mildly fascinating.
+    </span>
+  </button>
 
-  <span class="button-description">
-    Because apparently you need one.
-  </span>
+  <!-- ROW 2 -->
 
-</button>
+  <button
+    class="changed"
+    onclick="changeMind()"
+  >
+    <span class="button-icon">🟢</span>
+    <span class="button-label">
+      I changed my mind
+    </span>
+    <span class="button-description">
+      This happens approximately 47 times per day.
+    </span>
+  </button>
 
-<button class="interesting" onclick="showInteresting()">
+  <button
+    class="dontknow"
+    onclick="dontKnow()"
+  >
+    <span class="button-icon">⚪</span>
+    <span class="button-label">
+      I don't know
+    </span>
+    <span class="button-description">
+      Finally, a button that understands me.
+    </span>
+  </button>
 
-  <span class="button-icon">🔵</span>
+  <!-- ROW 3 -->
 
-  <span class="button-label">
-    Show me something interesting
-  </span>
+  <button
+    class="learning-main-button"
+    onclick="toggleLearning()"
+  >
+    <span class="button-icon">🎓</span>
+    <span class="button-label">
+      Teach me something
+    </span>
+    <span class="button-description">
+      This may or may not improve your life.
+    </span>
+  </button>
 
-  <span class="button-description">
-    Take me somewhere mildly fascinating.
-  </span>
-
-</button>
-
-<button class="changed" onclick="changeMind()">
-
-  <span class="button-icon">🟢</span>
-
-  <span class="button-label">
-    I changed my mind
-  </span>
-
-  <span class="button-description">
-    This happens approximately 47 times per day.
-  </span>
-
-</button>
-
-<button class="dontknow" onclick="dontKnow()">
-
-  <span class="button-icon">⚪</span>
-
-  <span class="button-label">
-    I don't know
-  </span>
-
-  <span class="button-description">
-    Finally, a button that understands me.
-  </span>
-
-</button>
+  <a
+    class="main-link-button armenia-button"
+    href="https://www.youtube.com/watch?v=QlvTHZaRSsQ&list=PLKoARKibL8uaHS8_8RW79Rd0ZrRBDwqcG"
+    target="_blank"
+    rel="noopener"
+  >
+    <span class="button-icon">🇦🇲</span>
+    <span class="button-label">
+      Videos of Armenia
+    </span>
+    <span class="button-description">
+      See Armenia through my camera.
+    </span>
+  </a>
 
 </div>
 
-<!-- TEACH ME SOMETHING -->
+<!-- LEARNING AREA -->
 
 <div class="learning-section">
 
-<button class="learning-main-button" onclick="toggleLearning()">
-
-  <span class="button-icon">🎓</span>
-
-  <span class="button-label">
-    Teach me something
-  </span>
-
-  <span class="button-description">
-    This may or may not improve your life.
-  </span>
-
-</button>
-
-<div class="learning-menu" id="learningMenu">
+<div
+  class="learning-menu"
+  id="learningMenu"
+>
 
   <div class="learning-title">
     How useful would you like this to be?
@@ -908,7 +944,6 @@ body.chaos h1 {
       class="course-option"
       onclick="showMeaninglessCourse()"
     >
-
       <span class="course-icon">🌀</span>
 
       <span class="course-name">
@@ -918,14 +953,12 @@ body.chaos h1 {
       <span class="course-description">
         Learn something you probably didn't need to know.
       </span>
-
     </button>
 
     <button
       class="course-option"
       onclick="showHelpfulCourse()"
     >
-
       <span class="course-icon">🧠</span>
 
       <span class="course-name">
@@ -935,7 +968,6 @@ body.chaos h1 {
       <span class="course-description">
         Something that might actually be useful.
       </span>
-
     </button>
 
   </div>
@@ -1127,85 +1159,57 @@ body.chaos h1 {
   class="decision-option"
   onclick="generateDecision('tiny')"
 >
-
   <span class="decision-option-icon">🧹</span>
-
-  <span class="decision-option-title">
-    Tiny
-  </span>
-
+  <span class="decision-option-title">Tiny</span>
   <span class="decision-option-description">
     Something you can decide in 30 seconds.
   </span>
-
 </button>
 
 <button
   class="decision-option"
   onclick="generateDecision('today')"
 >
-
   <span class="decision-option-icon">🌱</span>
-
-  <span class="decision-option-title">
-    Today
-  </span>
-
+  <span class="decision-option-title">Today</span>
   <span class="decision-option-description">
     Something you can actually do today.
   </span>
-
 </button>
 
 <button
   class="decision-option"
   onclick="generateDecision('personal')"
 >
-
   <span class="decision-option-icon">🎯</span>
-
-  <span class="decision-option-title">
-    Personal
-  </span>
-
+  <span class="decision-option-title">Personal</span>
   <span class="decision-option-description">
     A small life choice.
   </span>
-
 </button>
 
 <button
   class="decision-option"
   onclick="generateDecision('creative')"
 >
-
   <span class="decision-option-icon">🎨</span>
-
-  <span class="decision-option-title">
-    Creative
-  </span>
-
+  <span class="decision-option-title">Creative</span>
   <span class="decision-option-description">
     Something to make, explore, or try.
   </span>
-
 </button>
 
 <button
   class="decision-option"
   onclick="generateDecision('unnecessary')"
 >
-
   <span class="decision-option-icon">🌀</span>
-
   <span class="decision-option-title">
     Completely unnecessary
   </span>
-
   <span class="decision-option-description">
     Maximum nonsense. Minimal consequences.
   </span>
-
 </button>
 
 </div>
@@ -1329,104 +1333,56 @@ body.chaos h1 {
 <div class="possibility-grid">
 
 <div class="possibility">
-
-  <div class="possibility-number">
-    01
-  </div>
-
-  <h3>
-    Turn it into a game
-  </h3>
-
+  <div class="possibility-number">01</div>
+  <h3>Turn it into a game</h3>
   <p>
     Tiny decisions. Strange challenges.
     Completely unnecessary achievements.
   </p>
-
 </div>
 
 <div class="possibility">
-
-  <div class="possibility-number">
-    02
-  </div>
-
-  <h3>
-    Make it useful
-  </h3>
-
+  <div class="possibility-number">02</div>
+  <h3>Make it useful</h3>
   <p>
     A productivity tool, decision maker,
     idea generator, or something people actually need.
   </p>
-
 </div>
 
 <div class="possibility">
-
-  <div class="possibility-number">
-    03
-  </div>
-
-  <h3>
-    Make it ridiculous
-  </h3>
-
+  <div class="possibility-number">03</div>
+  <h3>Make it ridiculous</h3>
   <p>
     Add anonymous confessions, random buttons,
     internet nonsense, and questionable features.
   </p>
-
 </div>
 
 <div class="possibility">
-
-  <div class="possibility-number">
-    04
-  </div>
-
-  <h3>
-    Turn it into a business
-  </h3>
-
+  <div class="possibility-number">04</div>
+  <h3>Turn it into a business</h3>
   <p>
     At some point someone will probably say
     “you could monetize this.”
   </p>
-
 </div>
 
 <div class="possibility">
-
-  <div class="possibility-number">
-    05
-  </div>
-
-  <h3>
-    Completely change it
-  </h3>
-
+  <div class="possibility-number">05</div>
+  <h3>Completely change it</h3>
   <p>
     We could delete everything and build
     something completely different.
   </p>
-
 </div>
 
 <div class="possibility">
-
-  <div class="possibility-number">
-    06
-  </div>
-
-  <h3>
-    Do absolutely nothing
-  </h3>
-
+  <div class="possibility-number">06</div>
+  <h3>Do absolutely nothing</h3>
   <p>
     Honestly, this is still a legitimate option.
   </p>
-
 </div>
 
 </div>
@@ -1438,7 +1394,6 @@ body.chaos h1 {
 <footer>
 
 <div class="footer-inner">
-
   <div>
     Built out of curiosity.
   </div>
@@ -1446,7 +1401,6 @@ body.chaos h1 {
   <div>
     Version 3.0 · Purpose still pending.
   </div>
-
 </div>
 
 </footer>
@@ -1514,11 +1468,9 @@ const interesting=[
 ];
 
 function randomItem(array) {
-
   return array[
     Math.floor(Math.random()*array.length)
   ];
-
 }
 
 function showInteresting() {
@@ -1530,7 +1482,6 @@ function showInteresting() {
     randomItem(interesting),
     "You are now approximately 0.0001% more informed."
   );
-
 }
 
 /* CHANGE MIND */
@@ -1544,7 +1495,6 @@ function changeMind() {
     "We have completely changed direction. Unfortunately, we have not decided what the new direction is.",
     "This is progress."
   );
-
 }
 
 /* DON'T KNOW */
@@ -1558,7 +1508,6 @@ function dontKnow() {
     "That's okay. You don't need to know yet.",
     "Neither does this website."
   );
-
 }
 
 /* LEARNING */
@@ -1582,7 +1531,6 @@ function toggleLearning() {
     },100);
 
   }
-
 }
 
 function showMeaninglessCourse() {
@@ -1605,7 +1553,6 @@ function showMeaninglessCourse() {
     });
 
   },100);
-
 }
 
 function showHelpfulCourse() {
@@ -1628,7 +1575,6 @@ function showHelpfulCourse() {
     });
 
   },100);
-
 }
 
 /* DECISION GENERATOR */
@@ -1661,7 +1607,6 @@ const indecisionCounter =
   document.getElementById("indecisionCounter");
 
 let currentCategory=null;
-
 let rejectionCount=0;
 
 const decisions={
@@ -1914,15 +1859,12 @@ function openDecisionGenerator() {
     });
 
   }
-
 }
 
 function generateDecision(category) {
 
   currentCategory=category;
-
   rejectionCount=0;
-
   displayDecision(category);
 
 }
@@ -1938,13 +1880,9 @@ function displayDecision(category) {
   const categoryNames={
 
     tiny:"Tiny decision",
-
     today:"Something to do today",
-
     personal:"Personal decision",
-
     creative:"Creative decision",
-
     unnecessary:"Completely unnecessary"
 
   };
@@ -1979,7 +1917,6 @@ function displayDecision(category) {
     behavior:"smooth",
     block:"center"
   });
-
 }
 
 function anotherDecision() {
@@ -2018,7 +1955,6 @@ function anotherDecision() {
     decisionResult.classList.add("visible");
 
     return;
-
   }
 
   displayDecision(currentCategory);
@@ -2033,7 +1969,6 @@ function anotherDecision() {
     indecisionCounter.classList.add("visible");
 
   }
-
 }
 
 function acceptDecision() {
@@ -2066,7 +2001,6 @@ function acceptDecision() {
   void decisionResult.offsetWidth;
 
   decisionResult.classList.add("visible");
-
 }
 
 </script>
