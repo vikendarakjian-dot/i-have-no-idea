@@ -133,7 +133,7 @@ h1 {
   font-weight:500;
 }
 
-/* MAIN BUTTON GRID */
+/* MAIN BUTTONS */
 
 .buttons {
   margin-top:48px;
@@ -143,8 +143,7 @@ h1 {
   width:min(720px,100%);
 }
 
-button,
-.main-link-button {
+button {
   appearance:none;
   border:1px solid var(--border);
   background:var(--card);
@@ -162,24 +161,14 @@ button,
     box-shadow .2s ease;
 }
 
-.main-link-button {
-  text-decoration:none;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-}
-
-button:hover,
-.main-link-button:hover {
+button:hover {
   transform:translateY(-3px);
   background:var(--card-hover);
   border-color:rgba(255,255,255,.18);
   box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
 
-button:active,
-.main-link-button:active {
+button:active {
   transform:translateY(0);
 }
 
@@ -221,8 +210,6 @@ button:active,
 }
 
 .learning-main-button {
-  width:100%;
-  height:100%;
   border-color:rgba(255,184,77,.22);
 }
 
@@ -238,29 +225,50 @@ button:active,
   border-color:rgba(255,107,107,.65);
 }
 
-/* LEARNING AREA */
+/* EXPANDABLE AREAS */
+
+.learning-section,
+.armenia-section {
+  width:min(720px,100%);
+}
 
 .learning-section {
-  width:min(720px,100%);
   margin-top:14px;
 }
 
-.learning-menu {
+.learning-menu,
+.armenia-menu {
   display:none;
   margin-top:16px;
   padding:28px;
   border-radius:22px;
-  background:rgba(255,184,77,.05);
-  border:1px solid rgba(255,184,77,.18);
   text-align:left;
   animation:appear .35s ease;
 }
 
-.learning-menu.visible {
+.learning-menu {
+  background:rgba(255,184,77,.05);
+  border:1px solid rgba(255,184,77,.18);
+}
+
+.armenia-menu {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(217,0,18,.06),
+      rgba(0,51,160,.06),
+      rgba(242,168,0,.06)
+    );
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.learning-menu.visible,
+.armenia-menu.visible {
   display:block;
 }
 
-.learning-title {
+.learning-title,
+.armenia-title {
   font-size:22px;
   font-weight:700;
   letter-spacing:-.03em;
@@ -268,12 +276,15 @@ button:active,
   text-align:center;
 }
 
-.learning-subtitle {
+.learning-subtitle,
+.armenia-subtitle {
   color:var(--muted);
   font-size:14px;
   margin-bottom:22px;
   text-align:center;
 }
+
+/* COURSE OPTIONS */
 
 .course-options {
   display:grid;
@@ -408,6 +419,61 @@ button:active,
   font-size:11px !important;
 }
 
+/* ARMENIA VIDEO PLAYER */
+
+.armenia-flag-line {
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  margin-bottom:18px;
+}
+
+.armenia-flag-line span {
+  width:38px;
+  height:4px;
+  border-radius:999px;
+}
+
+.armenia-red {
+  background:#d90012;
+}
+
+.armenia-blue {
+  background:#0033a0;
+}
+
+.armenia-orange {
+  background:#f2a800;
+}
+
+.video-wrapper {
+  position:relative;
+  width:100%;
+  aspect-ratio:16 / 9;
+  overflow:hidden;
+  border-radius:16px;
+  background:#000;
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 20px 50px rgba(0,0,0,.3);
+}
+
+.video-wrapper iframe {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+.video-note {
+  margin-top:16px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+  text-align:center;
+}
+
 /* RESPONSE */
 
 .response-wrapper {
@@ -459,6 +525,7 @@ button:active,
     opacity:0;
     transform:translateY(8px);
   }
+
   to {
     opacity:1;
     transform:translateY(0);
@@ -772,6 +839,11 @@ body.chaos h1 {
     width:100%;
   }
 
+  .learning-menu,
+  .armenia-menu {
+    padding:20px;
+  }
+
   .possibilities {
     padding:70px 0 90px;
   }
@@ -792,6 +864,7 @@ body.chaos h1 {
 <div class="container">
 
 <nav>
+
   <div class="logo">
     I Have No Idea What I'm Doing.
   </div>
@@ -800,6 +873,7 @@ body.chaos h1 {
     <span class="status-dot"></span>
     <span>Currently figuring it out</span>
   </div>
+
 </nav>
 
 <main>
@@ -833,95 +907,105 @@ body.chaos h1 {
 
 <div class="buttons">
 
-  <!-- ROW 1 -->
+<!-- ROW 1 -->
 
-  <button
-    class="decision"
-    onclick="openDecisionGenerator()"
-  >
-    <span class="button-icon">🟣</span>
-    <span class="button-label">
-      Give me an unnecessary life decision
-    </span>
-    <span class="button-description">
-      Because apparently you need one.
-    </span>
-  </button>
+<button
+  class="decision"
+  onclick="openDecisionGenerator()"
+>
+  <span class="button-icon">🟣</span>
 
-  <button
-    class="interesting"
-    onclick="showInteresting()"
-  >
-    <span class="button-icon">🔵</span>
-    <span class="button-label">
-      Show me something interesting
-    </span>
-    <span class="button-description">
-      Take me somewhere mildly fascinating.
-    </span>
-  </button>
+  <span class="button-label">
+    Give me an unnecessary life decision
+  </span>
 
-  <!-- ROW 2 -->
+  <span class="button-description">
+    Because apparently you need one.
+  </span>
+</button>
 
-  <button
-    class="changed"
-    onclick="changeMind()"
-  >
-    <span class="button-icon">🟢</span>
-    <span class="button-label">
-      I changed my mind
-    </span>
-    <span class="button-description">
-      This happens approximately 47 times per day.
-    </span>
-  </button>
+<button
+  class="interesting"
+  onclick="showInteresting()"
+>
+  <span class="button-icon">🔵</span>
 
-  <button
-    class="dontknow"
-    onclick="dontKnow()"
-  >
-    <span class="button-icon">⚪</span>
-    <span class="button-label">
-      I don't know
-    </span>
-    <span class="button-description">
-      Finally, a button that understands me.
-    </span>
-  </button>
+  <span class="button-label">
+    Show me something interesting
+  </span>
 
-  <!-- ROW 3 -->
+  <span class="button-description">
+    Take me somewhere mildly fascinating.
+  </span>
+</button>
 
-  <button
-    class="learning-main-button"
-    onclick="toggleLearning()"
-  >
-    <span class="button-icon">🎓</span>
-    <span class="button-label">
-      Teach me something
-    </span>
-    <span class="button-description">
-      This may or may not improve your life.
-    </span>
-  </button>
+<!-- ROW 2 -->
 
-  <a
-    class="main-link-button armenia-button"
-    href="https://www.youtube.com/watch?v=QlvTHZaRSsQ&list=PLKoARKibL8uaHS8_8RW79Rd0ZrRBDwqcG"
-    target="_blank"
-    rel="noopener"
-  >
-    <span class="button-icon">🇦🇲</span>
-    <span class="button-label">
-      Videos of Armenia
-    </span>
-    <span class="button-description">
-      See Armenia through my camera.
-    </span>
-  </a>
+<button
+  class="changed"
+  onclick="changeMind()"
+>
+  <span class="button-icon">🟢</span>
+
+  <span class="button-label">
+    I changed my mind
+  </span>
+
+  <span class="button-description">
+    This happens approximately 47 times per day.
+  </span>
+</button>
+
+<button
+  class="dontknow"
+  onclick="dontKnow()"
+>
+  <span class="button-icon">⚪</span>
+
+  <span class="button-label">
+    I don't know
+  </span>
+
+  <span class="button-description">
+    Finally, a button that understands me.
+  </span>
+</button>
+
+<!-- ROW 3 -->
+
+<button
+  class="learning-main-button"
+  onclick="toggleLearning()"
+>
+  <span class="button-icon">🎓</span>
+
+  <span class="button-label">
+    Teach me something
+  </span>
+
+  <span class="button-description">
+    This may or may not improve your life.
+  </span>
+</button>
+
+<button
+  class="armenia-button"
+  onclick="toggleArmeniaVideos()"
+>
+  <span class="button-icon">🇦🇲</span>
+
+  <span class="button-label">
+    Videos of Armenia
+  </span>
+
+  <span class="button-description">
+    See Armenia through my camera.
+  </span>
+</button>
 
 </div>
 
-<!-- LEARNING AREA -->
+<!-- TEACH ME SOMETHING EXPANDED AREA -->
 
 <div class="learning-section">
 
@@ -944,6 +1028,7 @@ body.chaos h1 {
       class="course-option"
       onclick="showMeaninglessCourse()"
     >
+
       <span class="course-icon">🌀</span>
 
       <span class="course-name">
@@ -953,12 +1038,14 @@ body.chaos h1 {
       <span class="course-description">
         Learn something you probably didn't need to know.
       </span>
+
     </button>
 
     <button
       class="course-option"
       onclick="showHelpfulCourse()"
     >
+
       <span class="course-icon">🧠</span>
 
       <span class="course-name">
@@ -968,6 +1055,7 @@ body.chaos h1 {
       <span class="course-description">
         Something that might actually be useful.
       </span>
+
     </button>
 
   </div>
@@ -1138,6 +1226,48 @@ body.chaos h1 {
 
 </div>
 
+<!-- VIDEOS OF ARMENIA EXPANDED AREA -->
+
+<div class="armenia-section">
+
+<div
+  class="armenia-menu"
+  id="armeniaMenu"
+>
+
+  <div class="armenia-flag-line">
+    <span class="armenia-red"></span>
+    <span class="armenia-blue"></span>
+    <span class="armenia-orange"></span>
+  </div>
+
+  <div class="armenia-title">
+    🇦🇲 Videos of Armenia
+  </div>
+
+  <div class="armenia-subtitle">
+    A small window into Armenia, one video at a time.
+  </div>
+
+  <div class="video-wrapper">
+
+    <iframe
+      src="https://www.youtube.com/embed/videoseries?list=PLKoARKibL8uaHS8_8RW79Rd0ZrRBDwqcG"
+      title="Videos of Armenia"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+
+  </div>
+
+  <div class="video-note">
+    Use the playlist controls in the video player to explore the collection.
+  </div>
+
+</div>
+
+</div>
+
 <!-- DECISION PICKER -->
 
 <div
@@ -1159,57 +1289,85 @@ body.chaos h1 {
   class="decision-option"
   onclick="generateDecision('tiny')"
 >
+
   <span class="decision-option-icon">🧹</span>
-  <span class="decision-option-title">Tiny</span>
+
+  <span class="decision-option-title">
+    Tiny
+  </span>
+
   <span class="decision-option-description">
     Something you can decide in 30 seconds.
   </span>
+
 </button>
 
 <button
   class="decision-option"
   onclick="generateDecision('today')"
 >
+
   <span class="decision-option-icon">🌱</span>
-  <span class="decision-option-title">Today</span>
+
+  <span class="decision-option-title">
+    Today
+  </span>
+
   <span class="decision-option-description">
     Something you can actually do today.
   </span>
+
 </button>
 
 <button
   class="decision-option"
   onclick="generateDecision('personal')"
 >
+
   <span class="decision-option-icon">🎯</span>
-  <span class="decision-option-title">Personal</span>
+
+  <span class="decision-option-title">
+    Personal
+  </span>
+
   <span class="decision-option-description">
     A small life choice.
   </span>
+
 </button>
 
 <button
   class="decision-option"
   onclick="generateDecision('creative')"
 >
+
   <span class="decision-option-icon">🎨</span>
-  <span class="decision-option-title">Creative</span>
+
+  <span class="decision-option-title">
+    Creative
+  </span>
+
   <span class="decision-option-description">
     Something to make, explore, or try.
   </span>
+
 </button>
 
 <button
   class="decision-option"
   onclick="generateDecision('unnecessary')"
 >
+
   <span class="decision-option-icon">🌀</span>
+
   <span class="decision-option-title">
     Completely unnecessary
   </span>
+
   <span class="decision-option-description">
     Maximum nonsense. Minimal consequences.
   </span>
+
 </button>
 
 </div>
@@ -1333,56 +1491,104 @@ body.chaos h1 {
 <div class="possibility-grid">
 
 <div class="possibility">
-  <div class="possibility-number">01</div>
-  <h3>Turn it into a game</h3>
+
+  <div class="possibility-number">
+    01
+  </div>
+
+  <h3>
+    Turn it into a game
+  </h3>
+
   <p>
     Tiny decisions. Strange challenges.
     Completely unnecessary achievements.
   </p>
+
 </div>
 
 <div class="possibility">
-  <div class="possibility-number">02</div>
-  <h3>Make it useful</h3>
+
+  <div class="possibility-number">
+    02
+  </div>
+
+  <h3>
+    Make it useful
+  </h3>
+
   <p>
     A productivity tool, decision maker,
     idea generator, or something people actually need.
   </p>
+
 </div>
 
 <div class="possibility">
-  <div class="possibility-number">03</div>
-  <h3>Make it ridiculous</h3>
+
+  <div class="possibility-number">
+    03
+  </div>
+
+  <h3>
+    Make it ridiculous
+  </h3>
+
   <p>
     Add anonymous confessions, random buttons,
     internet nonsense, and questionable features.
   </p>
+
 </div>
 
 <div class="possibility">
-  <div class="possibility-number">04</div>
-  <h3>Turn it into a business</h3>
+
+  <div class="possibility-number">
+    04
+  </div>
+
+  <h3>
+    Turn it into a business
+  </h3>
+
   <p>
     At some point someone will probably say
     “you could monetize this.”
   </p>
+
 </div>
 
 <div class="possibility">
-  <div class="possibility-number">05</div>
-  <h3>Completely change it</h3>
+
+  <div class="possibility-number">
+    05
+  </div>
+
+  <h3>
+    Completely change it
+  </h3>
+
   <p>
     We could delete everything and build
     something completely different.
   </p>
+
 </div>
 
 <div class="possibility">
-  <div class="possibility-number">06</div>
-  <h3>Do absolutely nothing</h3>
+
+  <div class="possibility-number">
+    06
+  </div>
+
+  <h3>
+    Do absolutely nothing
+  </h3>
+
   <p>
     Honestly, this is still a legitimate option.
   </p>
+
 </div>
 
 </div>
@@ -1394,6 +1600,7 @@ body.chaos h1 {
 <footer>
 
 <div class="footer-inner">
+
   <div>
     Built out of curiosity.
   </div>
@@ -1401,6 +1608,7 @@ body.chaos h1 {
   <div>
     Version 3.0 · Purpose still pending.
   </div>
+
 </div>
 
 </footer>
@@ -1468,9 +1676,11 @@ const interesting=[
 ];
 
 function randomItem(array) {
+
   return array[
     Math.floor(Math.random()*array.length)
   ];
+
 }
 
 function showInteresting() {
@@ -1482,6 +1692,7 @@ function showInteresting() {
     randomItem(interesting),
     "You are now approximately 0.0001% more informed."
   );
+
 }
 
 /* CHANGE MIND */
@@ -1495,6 +1706,7 @@ function changeMind() {
     "We have completely changed direction. Unfortunately, we have not decided what the new direction is.",
     "This is progress."
   );
+
 }
 
 /* DON'T KNOW */
@@ -1508,6 +1720,7 @@ function dontKnow() {
     "That's okay. You don't need to know yet.",
     "Neither does this website."
   );
+
 }
 
 /* LEARNING */
@@ -1516,6 +1729,11 @@ function toggleLearning() {
 
   const menu =
     document.getElementById("learningMenu");
+
+  const armenia =
+    document.getElementById("armeniaMenu");
+
+  armenia.classList.remove("visible");
 
   menu.classList.toggle("visible");
 
@@ -1531,6 +1749,7 @@ function toggleLearning() {
     },100);
 
   }
+
 }
 
 function showMeaninglessCourse() {
@@ -1553,6 +1772,7 @@ function showMeaninglessCourse() {
     });
 
   },100);
+
 }
 
 function showHelpfulCourse() {
@@ -1575,6 +1795,36 @@ function showHelpfulCourse() {
     });
 
   },100);
+
+}
+
+/* VIDEOS OF ARMENIA */
+
+function toggleArmeniaVideos() {
+
+  const armenia =
+    document.getElementById("armeniaMenu");
+
+  const learning =
+    document.getElementById("learningMenu");
+
+  learning.classList.remove("visible");
+
+  armenia.classList.toggle("visible");
+
+  if(armenia.classList.contains("visible")) {
+
+    setTimeout(function(){
+
+      armenia.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+
+    },100);
+
+  }
+
 }
 
 /* DECISION GENERATOR */
@@ -1607,6 +1857,7 @@ const indecisionCounter =
   document.getElementById("indecisionCounter");
 
 let currentCategory=null;
+
 let rejectionCount=0;
 
 const decisions={
@@ -1859,12 +2110,15 @@ function openDecisionGenerator() {
     });
 
   }
+
 }
 
 function generateDecision(category) {
 
   currentCategory=category;
+
   rejectionCount=0;
+
   displayDecision(category);
 
 }
@@ -1880,9 +2134,13 @@ function displayDecision(category) {
   const categoryNames={
 
     tiny:"Tiny decision",
+
     today:"Something to do today",
+
     personal:"Personal decision",
+
     creative:"Creative decision",
+
     unnecessary:"Completely unnecessary"
 
   };
@@ -1917,6 +2175,7 @@ function displayDecision(category) {
     behavior:"smooth",
     block:"center"
   });
+
 }
 
 function anotherDecision() {
@@ -1955,6 +2214,7 @@ function anotherDecision() {
     decisionResult.classList.add("visible");
 
     return;
+
   }
 
   displayDecision(currentCategory);
@@ -1969,6 +2229,7 @@ function anotherDecision() {
     indecisionCounter.classList.add("visible");
 
   }
+
 }
 
 function acceptDecision() {
@@ -2001,6 +2262,7 @@ function acceptDecision() {
   void decisionResult.offsetWidth;
 
   decisionResult.classList.add("visible");
+
 }
 
 </script>
