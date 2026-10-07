@@ -29,7 +29,9 @@
   padding:0;
 }
 
-html { scroll-behavior:smooth; }
+html {
+  scroll-behavior:smooth;
+}
 
 body {
   min-height:100vh;
@@ -130,7 +132,7 @@ h1 {
   font-weight:500;
 }
 
-/* BUTTONS */
+/* MAIN BUTTONS */
 
 .buttons {
   margin-top:48px;
@@ -149,9 +151,13 @@ button {
   border-radius:18px;
   font-size:15px;
   font-weight:600;
-  text-align:left;
+  text-align:center;
   cursor:pointer;
-  transition:transform .2s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease;
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
 }
 
 button:hover {
@@ -161,17 +167,21 @@ button:hover {
   box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
 
-button:active { transform:translateY(0); }
+button:active {
+  transform:translateY(0);
+}
 
 .button-icon {
   display:block;
   font-size:24px;
   margin-bottom:13px;
+  text-align:center;
 }
 
 .button-label {
   display:block;
   margin-bottom:5px;
+  text-align:center;
 }
 
 .button-description {
@@ -179,12 +189,24 @@ button:active { transform:translateY(0); }
   color:var(--muted);
   font-size:13px;
   font-weight:400;
+  text-align:center;
 }
 
-.decision:hover { border-color:rgba(155,124,255,.5); }
-.interesting:hover { border-color:rgba(97,168,255,.5); }
-.changed:hover { border-color:rgba(255,121,184,.5); }
-.dontknow:hover { border-color:rgba(101,214,155,.5); }
+.decision:hover {
+  border-color:rgba(155,124,255,.5);
+}
+
+.interesting:hover {
+  border-color:rgba(97,168,255,.5);
+}
+
+.changed:hover {
+  border-color:rgba(255,121,184,.5);
+}
+
+.dontknow:hover {
+  border-color:rgba(101,214,155,.5);
+}
 
 /* TEACH ME SOMETHING */
 
@@ -196,6 +218,7 @@ button:active { transform:translateY(0); }
 .learning-main-button {
   width:100%;
   border-color:rgba(255,184,77,.22);
+  text-align:center;
 }
 
 .learning-main-button:hover {
@@ -213,19 +236,23 @@ button:active { transform:translateY(0); }
   animation:appear .35s ease;
 }
 
-.learning-menu.visible { display:block; }
+.learning-menu.visible {
+  display:block;
+}
 
 .learning-title {
   font-size:22px;
   font-weight:700;
   letter-spacing:-.03em;
   margin-bottom:7px;
+  text-align:center;
 }
 
 .learning-subtitle {
   color:var(--muted);
   font-size:14px;
   margin-bottom:22px;
+  text-align:center;
 }
 
 .course-options {
@@ -234,7 +261,10 @@ button:active { transform:translateY(0); }
   gap:10px;
 }
 
-.course-option { padding:20px; }
+.course-option {
+  padding:20px;
+  text-align:center;
+}
 
 .course-option:hover {
   border-color:rgba(255,184,77,.5);
@@ -267,9 +297,12 @@ button:active { transform:translateY(0); }
   background:rgba(255,255,255,.035);
   border:1px solid var(--border);
   animation:appear .35s ease;
+  text-align:left;
 }
 
-.course-content.visible { display:block; }
+.course-content.visible {
+  display:block;
+}
 
 .course-tag {
   color:var(--orange);
@@ -377,7 +410,9 @@ button:active { transform:translateY(0); }
   text-align:left;
 }
 
-.response.visible { display:block; }
+.response.visible {
+  display:block;
+}
 
 .response-label {
   color:var(--muted);
@@ -400,8 +435,15 @@ button:active { transform:translateY(0); }
 }
 
 @keyframes appear {
-  from { opacity:0; transform:translateY(8px); }
-  to { opacity:1; transform:translateY(0); }
+  from {
+    opacity:0;
+    transform:translateY(8px);
+  }
+
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 /* DECISION GENERATOR */
@@ -418,7 +460,9 @@ button:active { transform:translateY(0); }
   text-align:left;
 }
 
-.decision-picker.visible { display:block; }
+.decision-picker.visible {
+  display:block;
+}
 
 .decision-picker-title {
   font-size:22px;
@@ -443,6 +487,7 @@ button:active { transform:translateY(0); }
   padding:17px;
   border-radius:15px;
   background:rgba(255,255,255,.035);
+  text-align:center;
 }
 
 .decision-option:hover {
@@ -475,12 +520,18 @@ button:active { transform:translateY(0); }
   margin-top:20px;
   padding:27px;
   border-radius:20px;
-  background:linear-gradient(135deg,rgba(155,124,255,.12),rgba(255,255,255,.025));
+  background:linear-gradient(
+    135deg,
+    rgba(155,124,255,.12),
+    rgba(255,255,255,.025)
+  );
   border:1px solid rgba(155,124,255,.2);
   animation:appear .35s ease;
 }
 
-.decision-result.visible { display:block; }
+.decision-result.visible {
+  display:block;
+}
 
 .decision-result-category {
   color:var(--purple);
@@ -537,9 +588,13 @@ button:active { transform:translateY(0); }
   border-color:var(--purple);
 }
 
-.do-it-button:hover { background:#a68cff; }
+.do-it-button:hover {
+  background:#a68cff;
+}
 
-.another-button { background:rgba(255,255,255,.04); }
+.another-button {
+  background:rgba(255,255,255,.04);
+}
 
 .indecision-counter {
   display:none;
@@ -549,11 +604,15 @@ button:active { transform:translateY(0); }
   text-align:center;
 }
 
-.indecision-counter.visible { display:block; }
+.indecision-counter.visible {
+  display:block;
+}
 
 /* POSSIBILITIES */
 
-.possibilities { padding:100px 0 130px; }
+.possibilities {
+  padding:100px 0 130px;
+}
 
 .section-heading {
   max-width:650px;
@@ -596,7 +655,9 @@ button:active { transform:translateY(0); }
   transition:transform .2s ease;
 }
 
-.possibility:hover { transform:translateY(-4px); }
+.possibility:hover {
+  transform:translateY(-4px);
+}
 
 .possibility-number {
   color:var(--muted);
@@ -639,7 +700,9 @@ body.chaos {
     #090909;
 }
 
-body.chaos h1 { animation:wobble .5s ease; }
+body.chaos h1 {
+  animation:wobble .5s ease;
+}
 
 @keyframes wobble {
   0% { transform:rotate(0); }
@@ -652,21 +715,28 @@ body.chaos h1 { animation:wobble .5s ease; }
 /* MOBILE */
 
 @media(max-width:700px) {
-  .container { width:min(100% - 28px,1100px); }
+
+  .container {
+    width:min(100% - 28px,1100px);
+  }
 
   nav {
     padding:20px 0;
     gap:15px;
   }
 
-  .status { font-size:11px; }
+  .status {
+    font-size:11px;
+  }
 
   .hero {
     min-height:auto;
     padding:70px 0 80px;
   }
 
-  .hero > p { font-size:16px; }
+  .hero > p {
+    font-size:16px;
+  }
 
   .buttons,
   .decision-options,
@@ -675,15 +745,25 @@ body.chaos h1 { animation:wobble .5s ease; }
     grid-template-columns:1fr;
   }
 
-  .decision-actions { flex-direction:column; }
+  .decision-actions {
+    flex-direction:column;
+  }
 
-  .decision-actions button { width:100%; }
+  .decision-actions button {
+    width:100%;
+  }
 
-  .possibilities { padding:70px 0 90px; }
+  .possibilities {
+    padding:70px 0 90px;
+  }
 
-  .possibility-grid { grid-template-columns:1fr; }
+  .possibility-grid {
+    grid-template-columns:1fr;
+  }
 
-  .footer-inner { flex-direction:column; }
+  .footer-inner {
+    flex-direction:column;
+  }
 }
 </style>
 </head>
@@ -693,11 +773,16 @@ body.chaos h1 { animation:wobble .5s ease; }
 <div class="container">
 
 <nav>
-  <div class="logo">I Have No Idea What I'm Doing.</div>
+
+  <div class="logo">
+    I Have No Idea What I'm Doing.
+  </div>
+
   <div class="status">
     <span class="status-dot"></span>
     <span>Currently figuring it out</span>
   </div>
+
 </nav>
 
 <main>
@@ -727,30 +812,64 @@ body.chaos h1 { animation:wobble .5s ease; }
   I still don't know what the website should be about.
 </p>
 
+<!-- MAIN FOUR BUTTONS -->
+
 <div class="buttons">
 
 <button class="decision" onclick="openDecisionGenerator()">
+
   <span class="button-icon">🟣</span>
-  <span class="button-label">Give me an unnecessary life decision</span>
-  <span class="button-description">Because apparently you need one.</span>
+
+  <span class="button-label">
+    Give me an unnecessary life decision
+  </span>
+
+  <span class="button-description">
+    Because apparently you need one.
+  </span>
+
 </button>
 
 <button class="interesting" onclick="showInteresting()">
+
   <span class="button-icon">🔵</span>
-  <span class="button-label">Show me something interesting</span>
-  <span class="button-description">Take me somewhere mildly fascinating.</span>
+
+  <span class="button-label">
+    Show me something interesting
+  </span>
+
+  <span class="button-description">
+    Take me somewhere mildly fascinating.
+  </span>
+
 </button>
 
 <button class="changed" onclick="changeMind()">
+
   <span class="button-icon">🟢</span>
-  <span class="button-label">I changed my mind</span>
-  <span class="button-description">This happens approximately 47 times per day.</span>
+
+  <span class="button-label">
+    I changed my mind
+  </span>
+
+  <span class="button-description">
+    This happens approximately 47 times per day.
+  </span>
+
 </button>
 
 <button class="dontknow" onclick="dontKnow()">
+
   <span class="button-icon">⚪</span>
-  <span class="button-label">I don't know</span>
-  <span class="button-description">Finally, a button that understands me.</span>
+
+  <span class="button-label">
+    I don't know
+  </span>
+
+  <span class="button-description">
+    Finally, a button that understands me.
+  </span>
+
 </button>
 
 </div>
@@ -760,9 +879,17 @@ body.chaos h1 { animation:wobble .5s ease; }
 <div class="learning-section">
 
 <button class="learning-main-button" onclick="toggleLearning()">
+
   <span class="button-icon">🎓</span>
-  <span class="button-label">Teach me something</span>
-  <span class="button-description">This may or may not improve your life.</span>
+
+  <span class="button-label">
+    Teach me something
+  </span>
+
+  <span class="button-description">
+    This may or may not improve your life.
+  </span>
+
 </button>
 
 <div class="learning-menu" id="learningMenu">
@@ -777,31 +904,56 @@ body.chaos h1 { animation:wobble .5s ease; }
 
   <div class="course-options">
 
-    <button class="course-option" onclick="showMeaninglessCourse()">
+    <button
+      class="course-option"
+      onclick="showMeaninglessCourse()"
+    >
+
       <span class="course-icon">🌀</span>
-      <span class="course-name">Possibly Meaningless Course</span>
+
+      <span class="course-name">
+        Possibly Meaningless Course
+      </span>
+
       <span class="course-description">
         Learn something you probably didn't need to know.
       </span>
+
     </button>
 
-    <button class="course-option" onclick="showHelpfulCourse()">
+    <button
+      class="course-option"
+      onclick="showHelpfulCourse()"
+    >
+
       <span class="course-icon">🧠</span>
-      <span class="course-name">Possibly Helpful Course</span>
+
+      <span class="course-name">
+        Possibly Helpful Course
+      </span>
+
       <span class="course-description">
         Something that might actually be useful.
       </span>
+
     </button>
 
   </div>
 
-  <div class="course-content" id="meaninglessCourse">
+  <!-- MEANINGLESS COURSE -->
+
+  <div
+    class="course-content"
+    id="meaninglessCourse"
+  >
 
     <div class="course-tag">
       Possibly Meaningless Course
     </div>
 
-    <h3>Nothing here yet.</h3>
+    <h3>
+      Nothing here yet.
+    </h3>
 
     <p>
       We haven't decided what you're supposed to learn.
@@ -810,13 +962,20 @@ body.chaos h1 { animation:wobble .5s ease; }
 
   </div>
 
-  <div class="course-content" id="helpfulCourse">
+  <!-- HELPFUL COURSES -->
+
+  <div
+    class="course-content"
+    id="helpfulCourse"
+  >
 
     <div class="course-tag">
       Possibly Helpful Course
     </div>
 
-    <h3>Choose a course.</h3>
+    <h3>
+      Choose a course.
+    </h3>
 
     <p>
       Apparently this website is slowly becoming educational.
@@ -832,7 +991,9 @@ body.chaos h1 { animation:wobble .5s ease; }
           ENGLISH
         </div>
 
-        <h4>Chemsex Recovery</h4>
+        <h4>
+          Chemsex Recovery
+        </h4>
 
         <p>
           A self-guided 30-day programme for taking back control.
@@ -859,7 +1020,9 @@ body.chaos h1 { animation:wobble .5s ease; }
           ՀԱՅԵՐԵՆ
         </div>
 
-        <h4>ՔԵՄՍԵՔՍ</h4>
+        <h4>
+          ՔԵՄՍԵՔՍ
+        </h4>
 
         <p>
           Տեղեկատվություն • Անվտանգություն • Վերականգնում
@@ -884,7 +1047,9 @@ body.chaos h1 { animation:wobble .5s ease; }
           DEUTSCH
         </div>
 
-        <h4>Chemsex</h4>
+        <h4>
+          Chemsex
+        </h4>
 
         <p>
           Wissen • Sicherheit • Veränderung
@@ -909,7 +1074,9 @@ body.chaos h1 { animation:wobble .5s ease; }
           РУССКИЙ
         </div>
 
-        <h4>ХИМСЕКС</h4>
+        <h4>
+          ХИМСЕКС
+        </h4>
 
         <p>
           Знания • Безопасность • Перемены
@@ -936,11 +1103,15 @@ body.chaos h1 { animation:wobble .5s ease; }
   </div>
 
 </div>
+
 </div>
 
 <!-- DECISION PICKER -->
 
-<div class="decision-picker" id="decisionPicker">
+<div
+  class="decision-picker"
+  id="decisionPicker"
+>
 
 <div class="decision-picker-title">
   What kind of decision are we making?
@@ -952,71 +1123,142 @@ body.chaos h1 { animation:wobble .5s ease; }
 
 <div class="decision-options">
 
-<button class="decision-option" onclick="generateDecision('tiny')">
+<button
+  class="decision-option"
+  onclick="generateDecision('tiny')"
+>
+
   <span class="decision-option-icon">🧹</span>
-  <span class="decision-option-title">Tiny</span>
+
+  <span class="decision-option-title">
+    Tiny
+  </span>
+
   <span class="decision-option-description">
     Something you can decide in 30 seconds.
   </span>
+
 </button>
 
-<button class="decision-option" onclick="generateDecision('today')">
+<button
+  class="decision-option"
+  onclick="generateDecision('today')"
+>
+
   <span class="decision-option-icon">🌱</span>
-  <span class="decision-option-title">Today</span>
+
+  <span class="decision-option-title">
+    Today
+  </span>
+
   <span class="decision-option-description">
     Something you can actually do today.
   </span>
+
 </button>
 
-<button class="decision-option" onclick="generateDecision('personal')">
+<button
+  class="decision-option"
+  onclick="generateDecision('personal')"
+>
+
   <span class="decision-option-icon">🎯</span>
-  <span class="decision-option-title">Personal</span>
+
+  <span class="decision-option-title">
+    Personal
+  </span>
+
   <span class="decision-option-description">
     A small life choice.
   </span>
+
 </button>
 
-<button class="decision-option" onclick="generateDecision('creative')">
+<button
+  class="decision-option"
+  onclick="generateDecision('creative')"
+>
+
   <span class="decision-option-icon">🎨</span>
-  <span class="decision-option-title">Creative</span>
+
+  <span class="decision-option-title">
+    Creative
+  </span>
+
   <span class="decision-option-description">
     Something to make, explore, or try.
   </span>
+
 </button>
 
-<button class="decision-option" onclick="generateDecision('unnecessary')">
+<button
+  class="decision-option"
+  onclick="generateDecision('unnecessary')"
+>
+
   <span class="decision-option-icon">🌀</span>
-  <span class="decision-option-title">Completely unnecessary</span>
+
+  <span class="decision-option-title">
+    Completely unnecessary
+  </span>
+
   <span class="decision-option-description">
     Maximum nonsense. Minimal consequences.
   </span>
+
 </button>
 
 </div>
 
-<div class="decision-result" id="decisionResult">
+<div
+  class="decision-result"
+  id="decisionResult"
+>
 
-<div class="decision-result-category" id="decisionCategory">
+<div
+  class="decision-result-category"
+  id="decisionCategory"
+>
   Your decision
 </div>
 
-<h3 id="decisionTitle">Decision goes here.</h3>
+<h3 id="decisionTitle">
+  Decision goes here.
+</h3>
 
-<p id="decisionReason">Reason goes here.</p>
+<p id="decisionReason">
+  Reason goes here.
+</p>
 
 <div class="decision-meta">
-  <span id="decisionTime">⏱ Time</span>
-  <span id="decisionDifficulty">🟢 Difficulty</span>
-  <span id="decisionRegret">🤷 Regret potential</span>
+
+  <span id="decisionTime">
+    ⏱ Time
+  </span>
+
+  <span id="decisionDifficulty">
+    🟢 Difficulty
+  </span>
+
+  <span id="decisionRegret">
+    🤷 Regret potential
+  </span>
+
 </div>
 
 <div class="decision-actions">
 
-<button class="do-it-button" onclick="acceptDecision()">
+<button
+  class="do-it-button"
+  onclick="acceptDecision()"
+>
   I'll do it
 </button>
 
-<button class="another-button" onclick="anotherDecision()">
+<button
+  class="another-button"
+  onclick="anotherDecision()"
+>
   Give me another
 </button>
 
@@ -1024,7 +1266,10 @@ body.chaos h1 { animation:wobble .5s ease; }
 
 </div>
 
-<div class="indecision-counter" id="indecisionCounter"></div>
+<div
+  class="indecision-counter"
+  id="indecisionCounter"
+></div>
 
 </div>
 
@@ -1032,15 +1277,27 @@ body.chaos h1 { animation:wobble .5s ease; }
 
 <div class="response-wrapper">
 
-<div class="response" id="response">
+<div
+  class="response"
+  id="response"
+>
 
-<div class="response-label" id="responseLabel">
+<div
+  class="response-label"
+  id="responseLabel"
+>
   Important information
 </div>
 
-<div class="response-text" id="responseText"></div>
+<div
+  class="response-text"
+  id="responseText"
+></div>
 
-<div class="response-source" id="responseSource"></div>
+<div
+  class="response-source"
+  id="responseSource"
+></div>
 
 </div>
 
@@ -1054,9 +1311,13 @@ body.chaos h1 { animation:wobble .5s ease; }
 
 <div class="section-heading">
 
-<span>Possible future directions</span>
+<span>
+  Possible future directions
+</span>
 
-<h2>We could do literally anything with this.</h2>
+<h2>
+  We could do literally anything with this.
+</h2>
 
 <p>
   This is the part where we're supposed to have a business plan.
@@ -1068,51 +1329,124 @@ body.chaos h1 { animation:wobble .5s ease; }
 <div class="possibility-grid">
 
 <div class="possibility">
-  <div class="possibility-number">01</div>
-  <h3>Turn it into a game</h3>
-  <p>Tiny decisions. Strange challenges. Completely unnecessary achievements.</p>
+
+  <div class="possibility-number">
+    01
+  </div>
+
+  <h3>
+    Turn it into a game
+  </h3>
+
+  <p>
+    Tiny decisions. Strange challenges.
+    Completely unnecessary achievements.
+  </p>
+
 </div>
 
 <div class="possibility">
-  <div class="possibility-number">02</div>
-  <h3>Make it useful</h3>
-  <p>A productivity tool, decision maker, idea generator, or something people actually need.</p>
+
+  <div class="possibility-number">
+    02
+  </div>
+
+  <h3>
+    Make it useful
+  </h3>
+
+  <p>
+    A productivity tool, decision maker,
+    idea generator, or something people actually need.
+  </p>
+
 </div>
 
 <div class="possibility">
-  <div class="possibility-number">03</div>
-  <h3>Make it ridiculous</h3>
-  <p>Add anonymous confessions, random buttons, internet nonsense, and questionable features.</p>
+
+  <div class="possibility-number">
+    03
+  </div>
+
+  <h3>
+    Make it ridiculous
+  </h3>
+
+  <p>
+    Add anonymous confessions, random buttons,
+    internet nonsense, and questionable features.
+  </p>
+
 </div>
 
 <div class="possibility">
-  <div class="possibility-number">04</div>
-  <h3>Turn it into a business</h3>
-  <p>At some point someone will probably say “you could monetize this.”</p>
+
+  <div class="possibility-number">
+    04
+  </div>
+
+  <h3>
+    Turn it into a business
+  </h3>
+
+  <p>
+    At some point someone will probably say
+    “you could monetize this.”
+  </p>
+
 </div>
 
 <div class="possibility">
-  <div class="possibility-number">05</div>
-  <h3>Completely change it</h3>
-  <p>We could delete everything and build something completely different.</p>
+
+  <div class="possibility-number">
+    05
+  </div>
+
+  <h3>
+    Completely change it
+  </h3>
+
+  <p>
+    We could delete everything and build
+    something completely different.
+  </p>
+
 </div>
 
 <div class="possibility">
-  <div class="possibility-number">06</div>
-  <h3>Do absolutely nothing</h3>
-  <p>Honestly, this is still a legitimate option.</p>
+
+  <div class="possibility-number">
+    06
+  </div>
+
+  <h3>
+    Do absolutely nothing
+  </h3>
+
+  <p>
+    Honestly, this is still a legitimate option.
+  </p>
+
 </div>
 
 </div>
 
 </section>
+
 </main>
 
 <footer>
 
 <div class="footer-inner">
-  <div>Built out of curiosity.</div>
-  <div>Version 3.0 · Purpose still pending.</div>
+
+  <div>
+    Built out of curiosity.
+  </div>
+
+  <div>
+    Version 3.0 · Purpose still pending.
+  </div>
+
 </div>
 
 </footer>
@@ -1123,18 +1457,28 @@ body.chaos h1 { animation:wobble .5s ease; }
 
 /* RESPONSE SYSTEM */
 
-const response=document.getElementById("response");
-const responseLabel=document.getElementById("responseLabel");
-const responseText=document.getElementById("responseText");
-const responseSource=document.getElementById("responseSource");
+const response =
+  document.getElementById("response");
+
+const responseLabel =
+  document.getElementById("responseLabel");
+
+const responseText =
+  document.getElementById("responseText");
+
+const responseSource =
+  document.getElementById("responseSource");
 
 function showResponse(label,text,source="") {
+
   responseLabel.textContent=label;
   responseText.textContent=text;
   responseSource.textContent=source;
 
   response.classList.remove("visible");
+
   void response.offsetWidth;
+
   response.classList.add("visible");
 
   response.scrollIntoView({
@@ -1146,23 +1490,39 @@ function showResponse(label,text,source="") {
 /* RANDOM CONTENT */
 
 const interesting=[
+
   "Octopuses have three hearts. Two stop beating when they swim.",
+
   "A day on Venus is longer than a year on Venus.",
+
   "Bananas are botanically berries. Strawberries technically aren't.",
+
   "The inventor of the Pringles can had some of his ashes buried in one.",
+
   "There are more possible iterations of a game of chess than there are atoms in the observable universe.",
+
   "Cows have best friends and can become stressed when separated.",
+
   "The smell after rain has a name: petrichor.",
+
   "A group of flamingos is called a flamboyance.",
+
   "Your brain is constantly predicting what it expects to see before processing what is actually there.",
+
   "Some turtles can breathe through their butts. Nature is deeply unserious."
+
 ];
 
 function randomItem(array) {
-  return array[Math.floor(Math.random()*array.length)];
+
+  return array[
+    Math.floor(Math.random()*array.length)
+  ];
+
 }
 
 function showInteresting() {
+
   document.body.classList.remove("chaos");
 
   showResponse(
@@ -1170,11 +1530,13 @@ function showInteresting() {
     randomItem(interesting),
     "You are now approximately 0.0001% more informed."
   );
+
 }
 
 /* CHANGE MIND */
 
 function changeMind() {
+
   document.body.classList.toggle("chaos");
 
   showResponse(
@@ -1182,11 +1544,13 @@ function changeMind() {
     "We have completely changed direction. Unfortunately, we have not decided what the new direction is.",
     "This is progress."
   );
+
 }
 
 /* DON'T KNOW */
 
 function dontKnow() {
+
   document.body.classList.remove("chaos");
 
   showResponse(
@@ -1194,73 +1558,116 @@ function dontKnow() {
     "That's okay. You don't need to know yet.",
     "Neither does this website."
   );
+
 }
 
 /* LEARNING */
 
 function toggleLearning() {
-  const menu=document.getElementById("learningMenu");
+
+  const menu =
+    document.getElementById("learningMenu");
 
   menu.classList.toggle("visible");
 
   if(menu.classList.contains("visible")) {
+
     setTimeout(function(){
+
       menu.scrollIntoView({
         behavior:"smooth",
         block:"center"
       });
+
     },100);
+
   }
+
 }
 
 function showMeaninglessCourse() {
-  const meaningless=document.getElementById("meaninglessCourse");
-  const helpful=document.getElementById("helpfulCourse");
+
+  const meaningless =
+    document.getElementById("meaninglessCourse");
+
+  const helpful =
+    document.getElementById("helpfulCourse");
 
   helpful.classList.remove("visible");
+
   meaningless.classList.add("visible");
 
   setTimeout(function(){
+
     meaningless.scrollIntoView({
       behavior:"smooth",
       block:"center"
     });
+
   },100);
+
 }
 
 function showHelpfulCourse() {
-  const meaningless=document.getElementById("meaninglessCourse");
-  const helpful=document.getElementById("helpfulCourse");
+
+  const meaningless =
+    document.getElementById("meaninglessCourse");
+
+  const helpful =
+    document.getElementById("helpfulCourse");
 
   meaningless.classList.remove("visible");
+
   helpful.classList.add("visible");
 
   setTimeout(function(){
+
     helpful.scrollIntoView({
       behavior:"smooth",
       block:"center"
     });
+
   },100);
+
 }
 
 /* DECISION GENERATOR */
 
-const decisionPicker=document.getElementById("decisionPicker");
-const decisionResult=document.getElementById("decisionResult");
-const decisionCategory=document.getElementById("decisionCategory");
-const decisionTitle=document.getElementById("decisionTitle");
-const decisionReason=document.getElementById("decisionReason");
-const decisionTime=document.getElementById("decisionTime");
-const decisionDifficulty=document.getElementById("decisionDifficulty");
-const decisionRegret=document.getElementById("decisionRegret");
-const indecisionCounter=document.getElementById("indecisionCounter");
+const decisionPicker =
+  document.getElementById("decisionPicker");
+
+const decisionResult =
+  document.getElementById("decisionResult");
+
+const decisionCategory =
+  document.getElementById("decisionCategory");
+
+const decisionTitle =
+  document.getElementById("decisionTitle");
+
+const decisionReason =
+  document.getElementById("decisionReason");
+
+const decisionTime =
+  document.getElementById("decisionTime");
+
+const decisionDifficulty =
+  document.getElementById("decisionDifficulty");
+
+const decisionRegret =
+  document.getElementById("decisionRegret");
+
+const indecisionCounter =
+  document.getElementById("indecisionCounter");
 
 let currentCategory=null;
+
 let rejectionCount=0;
 
 const decisions={
 
 tiny:[
+
 {
 title:"Delete one screenshot from your phone.",
 reason:"You almost certainly have one that has served its purpose.",
@@ -1268,6 +1675,7 @@ time:"30 seconds",
 difficulty:"🟢 Very easy",
 regret:"1/10"
 },
+
 {
 title:"Change where you sit for the next hour.",
 reason:"A tiny environmental change can make an ordinary afternoon feel slightly different.",
@@ -1275,6 +1683,7 @@ time:"1 minute",
 difficulty:"🟢 Very easy",
 regret:"1/10"
 },
+
 {
 title:"Drink a glass of water before doing anything else.",
 reason:"Not every decision needs to be profound.",
@@ -1282,6 +1691,7 @@ time:"1 minute",
 difficulty:"🟢 Very easy",
 regret:"0/10"
 },
+
 {
 title:"Put your phone somewhere you cannot see it for 15 minutes.",
 reason:"You don't have to become a monk. Just disappear from your phone briefly.",
@@ -1289,6 +1699,7 @@ time:"15 minutes",
 difficulty:"🟡 Mild",
 regret:"2/10"
 },
+
 {
 title:"Listen to the next song that comes up instead of choosing one.",
 reason:"Give randomness a tiny amount of authority.",
@@ -1296,9 +1707,11 @@ time:"4 minutes",
 difficulty:"🟢 Easy",
 regret:"2/10"
 }
+
 ],
 
 today:[
+
 {
 title:"Go somewhere you've never been within 30 minutes of your home.",
 reason:"You don't need a life-changing adventure. You might just need to interrupt your normal pattern.",
@@ -1306,6 +1719,7 @@ time:"~1 hour",
 difficulty:"🟡 Moderate",
 regret:"4/10"
 },
+
 {
 title:"Take yourself out for a coffee without bringing your usual entertainment.",
 reason:"Sit there. Look around. Exist like a person from 2004.",
@@ -1313,6 +1727,7 @@ time:"30–60 minutes",
 difficulty:"🟢 Easy",
 regret:"2/10"
 },
+
 {
 title:"Cook something you've never made before.",
 reason:"The stakes are dinner. That's survivable.",
@@ -1320,6 +1735,7 @@ time:"30–90 minutes",
 difficulty:"🟡 Moderate",
 regret:"4/10"
 },
+
 {
 title:"Take a completely different route somewhere today.",
 reason:"Your brain has memorized your normal route. Give it something new.",
@@ -1327,6 +1743,7 @@ time:"10–30 minutes",
 difficulty:"🟢 Easy",
 regret:"2/10"
 },
+
 {
 title:"Spend one hour doing something you normally say you don't have time for.",
 reason:"You might discover that the problem was never actually time.",
@@ -1334,9 +1751,11 @@ time:"1 hour",
 difficulty:"🟡 Moderate",
 regret:"3/10"
 }
+
 ],
 
 personal:[
+
 {
 title:"Say no to one thing you don't actually want to do.",
 reason:"You don't need a dramatic boundary. Start with one small unnecessary obligation.",
@@ -1344,6 +1763,7 @@ time:"5 minutes",
 difficulty:"🟡 Moderate",
 regret:"3/10"
 },
+
 {
 title:"Write down one thing you've been postponing and spend 15 minutes on it.",
 reason:"You don't have to finish it. You just have to make it less theoretical.",
@@ -1351,6 +1771,7 @@ time:"15 minutes",
 difficulty:"🟡 Moderate",
 regret:"2/10"
 },
+
 {
 title:"Ask someone you like a question you've never asked them.",
 reason:"People are usually more interesting than our assumptions about them.",
@@ -1358,6 +1779,7 @@ time:"10 minutes",
 difficulty:"🟡 Moderate",
 regret:"3/10"
 },
+
 {
 title:"Remove one commitment from your calendar that you don't care about.",
 reason:"Your future self does not need to inherit every decision your past self made.",
@@ -1365,6 +1787,7 @@ time:"10 minutes",
 difficulty:"🟡 Moderate",
 regret:"3/10"
 },
+
 {
 title:"Write down three things you might genuinely want to try someday.",
 reason:"You don't need a five-year plan. Three possibilities are enough.",
@@ -1372,9 +1795,11 @@ time:"10 minutes",
 difficulty:"🟢 Easy",
 regret:"1/10"
 }
+
 ],
 
 creative:[
+
 {
 title:"Make something deliberately terrible.",
 reason:"Perfectionism loses some of its power when the goal is to make something bad on purpose.",
@@ -1382,6 +1807,7 @@ time:"20 minutes",
 difficulty:"🟢 Easy",
 regret:"1/10"
 },
+
 {
 title:"Take 10 photographs of completely ordinary things.",
 reason:"Try to make something boring look interesting.",
@@ -1389,6 +1815,7 @@ time:"20–30 minutes",
 difficulty:"🟢 Easy",
 regret:"1/10"
 },
+
 {
 title:"Write a 200-word story about a person who finds something they weren't looking for.",
 reason:"No audience. No publishing. Just make the thing.",
@@ -1396,6 +1823,7 @@ time:"20 minutes",
 difficulty:"🟡 Moderate",
 regret:"0/10"
 },
+
 {
 title:"Redesign something you use every day on paper.",
 reason:"You don't have to build it. Just imagine how you'd improve it.",
@@ -1403,6 +1831,7 @@ time:"20 minutes",
 difficulty:"🟢 Easy",
 regret:"1/10"
 },
+
 {
 title:"Make a playlist with exactly five songs.",
 reason:"Constraints make surprisingly good creative tools.",
@@ -1410,9 +1839,11 @@ time:"15 minutes",
 difficulty:"🟢 Easy",
 regret:"1/10"
 }
+
 ],
 
 unnecessary:[
+
 {
 title:"Buy a plant.",
 reason:"You don't need one. That's precisely why you should consider one.",
@@ -1420,6 +1851,7 @@ time:"30–60 minutes",
 difficulty:"🟡 Moderate",
 regret:"4/10"
 },
+
 {
 title:"Learn one completely useless fact and tell nobody.",
 reason:"Knowledge does not always need to be monetized.",
@@ -1427,6 +1859,7 @@ time:"5 minutes",
 difficulty:"🟢 Easy",
 regret:"0/10"
 },
+
 {
 title:"Give an object in your home a completely unnecessary name.",
 reason:"That lamp has been anonymous for long enough.",
@@ -1434,6 +1867,7 @@ time:"30 seconds",
 difficulty:"🟢 Very easy",
 regret:"0/10"
 },
+
 {
 title:"Rearrange one piece of furniture and then decide whether it was better.",
 reason:"Human civilization has survived worse decisions.",
@@ -1441,6 +1875,7 @@ time:"10 minutes",
 difficulty:"🟡 Moderate",
 regret:"3/10"
 },
+
 {
 title:"Go outside and walk until you see something you've never noticed before.",
 reason:"There is probably something right outside your normal field of attention.",
@@ -1448,6 +1883,7 @@ time:"20–30 minutes",
 difficulty:"🟢 Easy",
 regret:"1/10"
 },
+
 {
 title:"Start a project you have absolutely no intention of finishing.",
 reason:"Not everything needs to become a side hustle.",
@@ -1455,52 +1891,86 @@ time:"20 minutes",
 difficulty:"🟢 Easy",
 regret:"1/10"
 }
+
 ]
 
 };
 
 function openDecisionGenerator() {
+
   document.body.classList.remove("chaos");
 
   decisionPicker.classList.toggle("visible");
+
   decisionResult.classList.remove("visible");
 
-  if(decisionPicker.classList.contains("visible")) {
+  if(
+    decisionPicker.classList.contains("visible")
+  ) {
+
     decisionPicker.scrollIntoView({
       behavior:"smooth",
       block:"center"
     });
+
   }
+
 }
 
 function generateDecision(category) {
+
   currentCategory=category;
+
   rejectionCount=0;
+
   displayDecision(category);
+
 }
 
 function displayDecision(category) {
 
-  const options=decisions[category];
-  const decision=randomItem(options);
+  const options=
+    decisions[category];
+
+  const decision=
+    randomItem(options);
 
   const categoryNames={
+
     tiny:"Tiny decision",
+
     today:"Something to do today",
+
     personal:"Personal decision",
+
     creative:"Creative decision",
+
     unnecessary:"Completely unnecessary"
+
   };
 
-  decisionCategory.textContent=categoryNames[category];
-  decisionTitle.textContent=decision.title;
-  decisionReason.textContent=decision.reason;
-  decisionTime.textContent="⏱ "+decision.time;
-  decisionDifficulty.textContent=decision.difficulty;
-  decisionRegret.textContent="🤷 Regret potential: "+decision.regret;
+  decisionCategory.textContent=
+    categoryNames[category];
+
+  decisionTitle.textContent=
+    decision.title;
+
+  decisionReason.textContent=
+    decision.reason;
+
+  decisionTime.textContent=
+    "⏱ "+decision.time;
+
+  decisionDifficulty.textContent=
+    decision.difficulty;
+
+  decisionRegret.textContent=
+    "🤷 Regret potential: "+decision.regret;
 
   decisionResult.classList.remove("visible");
+
   void decisionResult.offsetWidth;
+
   decisionResult.classList.add("visible");
 
   indecisionCounter.classList.remove("visible");
@@ -1509,6 +1979,7 @@ function displayDecision(category) {
     behavior:"smooth",
     block:"center"
   });
+
 }
 
 function anotherDecision() {
@@ -1517,49 +1988,85 @@ function anotherDecision() {
 
   if(rejectionCount>=7) {
 
-    decisionCategory.textContent="The generator has reached a conclusion.";
-    decisionTitle.textContent="Stop looking for the perfect decision.";
-    decisionReason.textContent="You've rejected seven perfectly reasonable options. At this point, the decision isn't the problem. You are. Respectfully.";
-    decisionTime.textContent="⏱ Immediately";
-    decisionDifficulty.textContent="🟡 Surprisingly difficult";
-    decisionRegret.textContent="🤷 Probably 0/10";
+    decisionCategory.textContent=
+      "The generator has reached a conclusion.";
 
-    indecisionCounter.textContent="The website believes you may be overthinking this.";
+    decisionTitle.textContent=
+      "Stop looking for the perfect decision.";
+
+    decisionReason.textContent=
+      "You've rejected seven perfectly reasonable options. At this point, the decision isn't the problem. You are. Respectfully.";
+
+    decisionTime.textContent=
+      "⏱ Immediately";
+
+    decisionDifficulty.textContent=
+      "🟡 Surprisingly difficult";
+
+    decisionRegret.textContent=
+      "🤷 Probably 0/10";
+
+    indecisionCounter.textContent=
+      "The website believes you may be overthinking this.";
+
     indecisionCounter.classList.add("visible");
 
     decisionResult.classList.remove("visible");
+
     void decisionResult.offsetWidth;
+
     decisionResult.classList.add("visible");
 
     return;
+
   }
 
   displayDecision(currentCategory);
 
   if(rejectionCount>=4) {
+
     indecisionCounter.textContent=
-      "You've rejected "+rejectionCount+
+      "You've rejected "+
+      rejectionCount+
       " decisions. We are beginning to suspect you don't actually want a decision.";
 
     indecisionCounter.classList.add("visible");
+
   }
+
 }
 
 function acceptDecision() {
 
-  decisionCategory.textContent="Decision accepted";
-  decisionTitle.textContent="Excellent. Go do the thing.";
-  decisionReason.textContent="You don't need another decision. You need approximately five minutes of action.";
-  decisionTime.textContent="🚀 Start now";
-  decisionDifficulty.textContent="🟢 You can do this";
-  decisionRegret.textContent="🤷 Future you can deal with it";
+  decisionCategory.textContent=
+    "Decision accepted";
 
-  indecisionCounter.textContent="The website is proud of you.";
+  decisionTitle.textContent=
+    "Excellent. Go do the thing.";
+
+  decisionReason.textContent=
+    "You don't need another decision. You need approximately five minutes of action.";
+
+  decisionTime.textContent=
+    "🚀 Start now";
+
+  decisionDifficulty.textContent=
+    "🟢 You can do this";
+
+  decisionRegret.textContent=
+    "🤷 Future you can deal with it";
+
+  indecisionCounter.textContent=
+    "The website is proud of you.";
+
   indecisionCounter.classList.add("visible");
 
   decisionResult.classList.remove("visible");
+
   void decisionResult.offsetWidth;
+
   decisionResult.classList.add("visible");
+
 }
 
 </script>
