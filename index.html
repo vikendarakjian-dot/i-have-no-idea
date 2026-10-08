@@ -291,7 +291,7 @@ a:focus-visible {
   text-align:center;
 }
 
-/* COURSE OPTIONS */
+/* MATERIAL OPTIONS */
 
 .course-options {
   display:grid;
@@ -382,7 +382,7 @@ a:focus-visible {
   background:#ffc76d;
 }
 
-/* HELPFUL COURSES */
+/* HELPFUL MATERIALS */
 
 .helpful-course-grid {
   display:grid;
@@ -426,7 +426,53 @@ a:focus-visible {
   font-size:11px !important;
 }
 
-/* ARMENIA VIDEO GALLERY */
+/* GERMAN RESET YOUR MIND */
+
+.german-material {
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid var(--border);
+}
+
+.german-main-button {
+  width:100%;
+  border-color:rgba(97,168,255,.3);
+  background:rgba(97,168,255,.07);
+}
+
+.german-main-button:hover {
+  border-color:rgba(97,168,255,.7);
+}
+
+.german-video-panel {
+  display:none;
+  margin-top:16px;
+  padding:18px;
+  border:1px solid rgba(97,168,255,.2);
+  border-radius:18px;
+  background:rgba(97,168,255,.035);
+  animation:appear .35s ease;
+}
+
+.german-video-panel.visible {
+  display:block;
+}
+
+.german-video-title {
+  font-size:21px;
+  font-weight:700;
+  text-align:center;
+  margin-bottom:7px;
+}
+
+.german-video-subtitle {
+  color:var(--muted);
+  font-size:13px;
+  text-align:center;
+  margin-bottom:20px;
+}
+
+/* SHARED VIDEO GALLERY */
 
 .armenia-flag-line {
   display:flex;
@@ -970,6 +1016,10 @@ body.chaos h1 {
     padding:20px;
   }
 
+  .course-content {
+    padding:18px;
+  }
+
   .possibilities {
     padding:70px 0 90px;
   }
@@ -1039,8 +1089,6 @@ body.chaos h1 {
 
 <div class="buttons">
 
-<!-- ROW 1 -->
-
 <button
   class="decision"
   onclick="openDecisionGenerator()"
@@ -1071,8 +1119,6 @@ body.chaos h1 {
   </span>
 </button>
 
-<!-- ROW 2 -->
-
 <button
   class="changed"
   onclick="changeMind()"
@@ -1102,8 +1148,6 @@ body.chaos h1 {
     Finally, a button that understands me.
   </span>
 </button>
-
-<!-- ROW 3 -->
 
 <button
   class="learning-main-button"
@@ -1143,7 +1187,7 @@ body.chaos h1 {
 
 </div>
 
-<!-- TEACH ME SOMETHING EXPANDED AREA -->
+<!-- TEACH ME SOMETHING -->
 
 <div class="learning-section">
 
@@ -1170,7 +1214,7 @@ body.chaos h1 {
       <span class="course-icon">🌀</span>
 
       <span class="course-name">
-        Possibly Meaningless Course
+        Possibly Meaningless Material
       </span>
 
       <span class="course-description">
@@ -1187,7 +1231,7 @@ body.chaos h1 {
       <span class="course-icon">🧠</span>
 
       <span class="course-name">
-        Possibly Helpful Course
+        Possibly Helpful Material
       </span>
 
       <span class="course-description">
@@ -1198,7 +1242,7 @@ body.chaos h1 {
 
   </div>
 
-  <!-- MEANINGLESS COURSE -->
+  <!-- MEANINGLESS MATERIAL -->
 
   <div
     class="course-content"
@@ -1206,7 +1250,7 @@ body.chaos h1 {
   >
 
     <div class="course-tag">
-      Possibly Meaningless Course
+      Possibly Meaningless Material
     </div>
 
     <h3>
@@ -1220,7 +1264,7 @@ body.chaos h1 {
 
   </div>
 
-  <!-- HELPFUL COURSES -->
+  <!-- HELPFUL MATERIALS -->
 
   <div
     class="course-content"
@@ -1228,7 +1272,7 @@ body.chaos h1 {
   >
 
     <div class="course-tag">
-      Possibly Helpful Course
+      Possibly Helpful Material
     </div>
 
     <h3>
@@ -1358,13 +1402,147 @@ body.chaos h1 {
       addiction treatment or emergency support.
     </p>
 
+    <!-- NEW GERMAN VIDEO MATERIAL -->
+
+    <div class="german-material">
+
+      <button
+        class="german-main-button"
+        id="germanButton"
+        onclick="toggleGermanVideos()"
+        aria-controls="germanVideoPanel"
+        aria-expanded="false"
+      >
+        <span class="button-icon">🧠</span>
+
+        <span class="button-label">
+          Reset your Mind Auf deutsch
+        </span>
+
+        <span class="button-description">
+          Sechs Videos. Ein neuer Blick auf deine Gedanken.
+        </span>
+      </button>
+
+      <div
+        class="german-video-panel"
+        id="germanVideoPanel"
+      >
+
+        <div class="german-video-title">
+          🧠 Reset your Mind Auf deutsch
+        </div>
+
+        <div class="german-video-subtitle">
+          Wähle ein Video aus und schau es direkt hier an.
+        </div>
+
+        <div class="video-gallery" id="germanVideoGallery">
+
+          <button class="video-card" onclick="playGermanVideo('TXL6ELtukX4',1)" aria-label="Play German video 1">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/TXL6ELtukX4/hqdefault.jpg" alt="German video 1 thumbnail" loading="lazy">
+              <span class="video-play-icon">▶</span>
+            </div>
+            <span class="video-card-label">Video 1</span>
+          </button>
+
+          <button class="video-card" onclick="playGermanVideo('gdhcKcXfajM',2)" aria-label="Play German video 2">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/gdhcKcXfajM/hqdefault.jpg" alt="German video 2 thumbnail" loading="lazy">
+              <span class="video-play-icon">▶</span>
+            </div>
+            <span class="video-card-label">Video 2</span>
+          </button>
+
+          <button class="video-card" onclick="playGermanVideo('IpRvzwLyJm4',3)" aria-label="Play German video 3">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/IpRvzwLyJm4/hqdefault.jpg" alt="German video 3 thumbnail" loading="lazy">
+              <span class="video-play-icon">▶</span>
+            </div>
+            <span class="video-card-label">Video 3</span>
+          </button>
+
+          <button class="video-card" onclick="playGermanVideo('IliE_sef89g',4)" aria-label="Play German video 4">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/IliE_sef89g/hqdefault.jpg" alt="German video 4 thumbnail" loading="lazy">
+              <span class="video-play-icon">▶</span>
+            </div>
+            <span class="video-card-label">Video 4</span>
+          </button>
+
+          <button class="video-card" onclick="playGermanVideo('XlDEhg9rt-w',5)" aria-label="Play German video 5">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/XlDEhg9rt-w/hqdefault.jpg" alt="German video 5 thumbnail" loading="lazy">
+              <span class="video-play-icon">▶</span>
+            </div>
+            <span class="video-card-label">Video 5</span>
+          </button>
+
+          <button class="video-card" onclick="playGermanVideo('FLIyVeafxGs',6)" aria-label="Play German video 6">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/FLIyVeafxGs/hqdefault.jpg" alt="German video 6 thumbnail" loading="lazy">
+              <span class="video-play-icon">▶</span>
+            </div>
+            <span class="video-card-label">Video 6</span>
+          </button>
+
+        </div>
+
+        <div
+          class="video-player-area"
+          id="germanPlayerArea"
+        >
+
+          <div
+            class="video-player-heading"
+            id="germanPlayerHeading"
+          >
+            Jetzt läuft
+          </div>
+
+          <div class="video-wrapper">
+
+            <iframe
+              id="germanVideoFrame"
+              title="Reset your Mind German video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+
+          </div>
+
+          <div class="video-note">
+            Wähle oben ein anderes Video aus, um zu wechseln.
+          </div>
+
+        </div>
+
+        <div class="more-videos-wrap">
+
+          <a
+            class="more-videos-link"
+            href="https://www.youtube.com/@autopilotoff-resetyourmind/videos"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            More Videos →
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 
 </div>
 
 </div>
 
-<!-- VIDEOS OF ARMENIA EXPANDED AREA -->
+<!-- VIDEOS OF ARMENIA -->
 
 <div class="armenia-section">
 
@@ -1386,8 +1564,6 @@ body.chaos h1 {
   <div class="armenia-subtitle">
     Choose a video and enjoy Armenia without leaving this website.
   </div>
-
-  <!-- NINE VIDEO THUMBNAILS -->
 
   <div class="video-gallery" id="videoGallery">
 
@@ -1465,8 +1641,6 @@ body.chaos h1 {
 
   </div>
 
-  <!-- VIDEO PLAYER APPEARS AFTER SELECTION -->
-
   <div
     class="video-player-area"
     id="armeniaPlayerArea"
@@ -1496,8 +1670,6 @@ body.chaos h1 {
     </div>
 
   </div>
-
-  <!-- LINK TO FULL YOUTUBE PLAYLIST -->
 
   <div class="more-videos-wrap">
 
@@ -1990,19 +2162,22 @@ function toggleLearning() {
 
   menu.classList.toggle("visible");
 
-  document.getElementById("learningButton")
-    .setAttribute(
-      "aria-expanded",
-      String(menu.classList.contains("visible"))
-    );
+  const isOpen=menu.classList.contains("visible");
 
-  if(menu.classList.contains("visible")) {
+  document.getElementById("learningButton")
+    .setAttribute("aria-expanded",String(isOpen));
+
+  if(!isOpen) {
+    stopGermanVideo();
+  }
+
+  if(isOpen) {
 
     setTimeout(function(){
 
       menu.scrollIntoView({
         behavior:"smooth",
-        block:"center"
+        block:"start"
       });
 
     },100);
@@ -2020,6 +2195,8 @@ function showMeaninglessCourse() {
     document.getElementById("helpfulCourse");
 
   helpful.classList.remove("visible");
+
+  stopGermanVideo();
 
   meaningless.classList.add("visible");
 
@@ -2050,11 +2227,74 @@ function showHelpfulCourse() {
 
     helpful.scrollIntoView({
       behavior:"smooth",
-      block:"center"
+      block:"start"
     });
 
   },100);
 
+}
+
+/* SHARED VIDEO PLAYER HELPER */
+
+function selectVideo(
+  videoId,
+  videoNumber,
+  galleryId,
+  frameId,
+  areaId,
+  headingId,
+  headingPrefix
+) {
+
+  const frame=document.getElementById(frameId);
+  const playerArea=document.getElementById(areaId);
+  const heading=document.getElementById(headingId);
+
+  const cards=document.querySelectorAll(
+    "#"+galleryId+" .video-card"
+  );
+
+  cards.forEach(function(card,index){
+    card.classList.toggle(
+      "active",
+      index===videoNumber-1
+    );
+  });
+
+  heading.textContent=headingPrefix+" "+videoNumber;
+
+  frame.src=
+    "https://www.youtube.com/embed/"+
+    encodeURIComponent(videoId)+
+    "?rel=0&playsinline=1";
+
+  playerArea.classList.add("visible");
+
+  setTimeout(function(){
+    playerArea.scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+  },100);
+}
+
+function clearVideo(
+  galleryId,
+  frameId,
+  areaId
+) {
+
+  const frame=document.getElementById(frameId);
+  const area=document.getElementById(areaId);
+
+  frame.removeAttribute("src");
+  area.classList.remove("visible");
+
+  document.querySelectorAll(
+    "#"+galleryId+" .video-card"
+  ).forEach(function(card){
+    card.classList.remove("active");
+  });
 }
 
 /* VIDEOS OF ARMENIA */
@@ -2069,12 +2309,14 @@ function toggleArmeniaVideos() {
 
   learning.classList.remove("visible");
 
+  stopGermanVideo();
+
   document.getElementById("learningButton")
     .setAttribute("aria-expanded","false");
 
   armenia.classList.toggle("visible");
 
-  const isOpen =
+  const isOpen=
     armenia.classList.contains("visible");
 
   document.getElementById("armeniaButton")
@@ -2101,66 +2343,78 @@ function toggleArmeniaVideos() {
 
 function playArmeniaVideo(videoId,videoNumber) {
 
-  const frame =
-    document.getElementById("armeniaVideoFrame");
-
-  const playerArea =
-    document.getElementById("armeniaPlayerArea");
-
-  const playerHeading =
-    document.getElementById("armeniaPlayerHeading");
-
-  const cards =
-    document.querySelectorAll(".video-card");
-
-  cards.forEach(function(card,index){
-
-    card.classList.toggle(
-      "active",
-      index===videoNumber-1
-    );
-
-  });
-
-  playerHeading.textContent =
-    "Now playing · Video "+videoNumber;
-
-  frame.src =
-    "https://www.youtube.com/embed/"+
-    encodeURIComponent(videoId)+
-    "?rel=0&playsinline=1";
-
-  playerArea.classList.add("visible");
-
-  setTimeout(function(){
-
-    playerArea.scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
-
-  },100);
+  selectVideo(
+    videoId,
+    videoNumber,
+    "videoGallery",
+    "armeniaVideoFrame",
+    "armeniaPlayerArea",
+    "armeniaPlayerHeading",
+    "Now playing · Video"
+  );
 
 }
 
 function stopArmeniaVideo() {
 
-  const frame =
-    document.getElementById("armeniaVideoFrame");
+  clearVideo(
+    "videoGallery",
+    "armeniaVideoFrame",
+    "armeniaPlayerArea"
+  );
 
-  const playerArea =
-    document.getElementById("armeniaPlayerArea");
+}
 
-  frame.removeAttribute("src");
+/* GERMAN RESET YOUR MIND */
 
-  playerArea.classList.remove("visible");
+function toggleGermanVideos() {
 
-  document.querySelectorAll(".video-card")
-    .forEach(function(card){
+  const panel=
+    document.getElementById("germanVideoPanel");
 
-      card.classList.remove("active");
+  panel.classList.toggle("visible");
 
-    });
+  const isOpen=panel.classList.contains("visible");
+
+  document.getElementById("germanButton")
+    .setAttribute("aria-expanded",String(isOpen));
+
+  if(!isOpen) {
+    stopGermanVideo();
+  }
+
+  if(isOpen) {
+    setTimeout(function(){
+      panel.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+    },100);
+  }
+
+}
+
+function playGermanVideo(videoId,videoNumber) {
+
+  selectVideo(
+    videoId,
+    videoNumber,
+    "germanVideoGallery",
+    "germanVideoFrame",
+    "germanPlayerArea",
+    "germanPlayerHeading",
+    "Jetzt läuft · Video"
+  );
+
+}
+
+function stopGermanVideo() {
+
+  clearVideo(
+    "germanVideoGallery",
+    "germanVideoFrame",
+    "germanPlayerArea"
+  );
 
 }
 
@@ -2194,7 +2448,6 @@ const indecisionCounter =
   document.getElementById("indecisionCounter");
 
 let currentCategory=null;
-
 let rejectionCount=0;
 
 const decisions={
@@ -2437,9 +2690,7 @@ function openDecisionGenerator() {
 
   decisionResult.classList.remove("visible");
 
-  if(
-    decisionPicker.classList.contains("visible")
-  ) {
+  if(decisionPicker.classList.contains("visible")) {
 
     decisionPicker.scrollIntoView({
       behavior:"smooth",
@@ -2453,57 +2704,33 @@ function openDecisionGenerator() {
 function generateDecision(category) {
 
   currentCategory=category;
-
   rejectionCount=0;
-
   displayDecision(category);
 
 }
 
 function displayDecision(category) {
 
-  const options=
-    decisions[category];
-
-  const decision=
-    randomItem(options);
+  const options=decisions[category];
+  const decision=randomItem(options);
 
   const categoryNames={
-
     tiny:"Tiny decision",
-
     today:"Something to do today",
-
     personal:"Personal decision",
-
     creative:"Creative decision",
-
     unnecessary:"Completely unnecessary"
-
   };
 
-  decisionCategory.textContent=
-    categoryNames[category];
-
-  decisionTitle.textContent=
-    decision.title;
-
-  decisionReason.textContent=
-    decision.reason;
-
-  decisionTime.textContent=
-    "⏱ "+decision.time;
-
-  decisionDifficulty.textContent=
-    decision.difficulty;
-
-  decisionRegret.textContent=
-    "🤷 Regret potential: "+decision.regret;
+  decisionCategory.textContent=categoryNames[category];
+  decisionTitle.textContent=decision.title;
+  decisionReason.textContent=decision.reason;
+  decisionTime.textContent="⏱ "+decision.time;
+  decisionDifficulty.textContent=decision.difficulty;
+  decisionRegret.textContent="🤷 Regret potential: "+decision.regret;
 
   decisionResult.classList.remove("visible");
-
   void decisionResult.offsetWidth;
-
   decisionResult.classList.add("visible");
 
   indecisionCounter.classList.remove("visible");
@@ -2530,14 +2757,9 @@ function anotherDecision() {
     decisionReason.textContent=
       "You've rejected seven perfectly reasonable options. At this point, the decision isn't the problem. You are. Respectfully.";
 
-    decisionTime.textContent=
-      "⏱ Immediately";
-
-    decisionDifficulty.textContent=
-      "🟡 Surprisingly difficult";
-
-    decisionRegret.textContent=
-      "🤷 Probably 0/10";
+    decisionTime.textContent="⏱ Immediately";
+    decisionDifficulty.textContent="🟡 Surprisingly difficult";
+    decisionRegret.textContent="🤷 Probably 0/10";
 
     indecisionCounter.textContent=
       "The website believes you may be overthinking this.";
@@ -2545,13 +2767,10 @@ function anotherDecision() {
     indecisionCounter.classList.add("visible");
 
     decisionResult.classList.remove("visible");
-
     void decisionResult.offsetWidth;
-
     decisionResult.classList.add("visible");
 
     return;
-
   }
 
   displayDecision(currentCategory);
@@ -2564,40 +2783,27 @@ function anotherDecision() {
       " decisions. We are beginning to suspect you don't actually want a decision.";
 
     indecisionCounter.classList.add("visible");
-
   }
 
 }
 
 function acceptDecision() {
 
-  decisionCategory.textContent=
-    "Decision accepted";
-
-  decisionTitle.textContent=
-    "Excellent. Go do the thing.";
+  decisionCategory.textContent="Decision accepted";
+  decisionTitle.textContent="Excellent. Go do the thing.";
 
   decisionReason.textContent=
     "You don't need another decision. You need approximately five minutes of action.";
 
-  decisionTime.textContent=
-    "🚀 Start now";
+  decisionTime.textContent="🚀 Start now";
+  decisionDifficulty.textContent="🟢 You can do this";
+  decisionRegret.textContent="🤷 Future you can deal with it";
 
-  decisionDifficulty.textContent=
-    "🟢 You can do this";
-
-  decisionRegret.textContent=
-    "🤷 Future you can deal with it";
-
-  indecisionCounter.textContent=
-    "The website is proud of you.";
-
+  indecisionCounter.textContent="The website is proud of you.";
   indecisionCounter.classList.add("visible");
 
   decisionResult.classList.remove("visible");
-
   void decisionResult.offsetWidth;
-
   decisionResult.classList.add("visible");
 
 }
